@@ -1,0 +1,253 @@
+/*----------- loading 3 colors animation -----------*/
+#loader-wrapper{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1000;}
+#loader-bg{opacity: 0.7;position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;background:#eceff1;}
+#loader{display:block;position:relative;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:3px solid transparent;border-top-color:#3498db;-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite;z-index:1001}
+#loader:before{content:"";position:absolute;top:5px;left:5px;right:5px;bottom:5px;border-radius:50%;border:3px solid transparent;border-top-color:#e74c3c;-webkit-animation:spin 3s linear infinite;animation:spin 3s linear infinite}
+#loader:after{content:"";position:absolute;top:15px;left:15px;right:15px;bottom:15px;border-radius:50%;border:3px solid transparent;border-top-color:#f9c922;-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}
+@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}
+.no-js #loader-wrapper{display:none}
+
+
+@font-face {
+    font-family: thaisanslite-font;
+    src: url(../fonts/thaisanslite_r1-webfont.eot);
+    src: url(../fonts/thaisanslite_r1-webfont.eot?#iefix) format('embedded-opentype'), url(../fonts/thaisanslite_r1-webfont.woff) format('woff'), url(../fonts/thaisanslite_r1-webfont.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+@font-face {
+    font-family: supermarket-font;
+    src: url(../fonts/supermarket-webfont.eot);
+    src: url(../fonts/supermarket-webfont.eot?#iefix) format('embedded-opentype'), url(../fonts/supermarket-webfont.woff) format('woff'), url(../fonts/supermarket-webfont.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+.font-1 {
+    font-family: supermarket-font
+}
+.font-2 {
+    font-family: thaisanslite-font
+}
+
+body {
+  background: #F5F6F7;
+}
+
+.blanktop {
+    margin-top: 150px;
+}
+.blanktop--normal {
+    margin-top: 100px;
+}
+
+.boxshadow {
+    box-shadow: 0px 0px 5px #CCCCCC;
+}
+
+/************ WRAP IMG ************/
+.wrapimg {
+    position: relative;
+    overflow: hidden;
+    padding: 0
+}
+.wrapimg img {
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    position: absolute
+}
+
+.img-effect-2:hover img {
+    -webkit-transform: rotate(5deg) scale(1.2);
+    -moz-transform: rotate(5deg) scale(1.2);
+    -ms-transform: rotate(5deg) scale(1.2);
+    -o-transform: rotate(5deg) scale(1.2);
+    transform: rotate(5deg) scale(1.2)
+}
+
+
+/************ HEADER ************/
+.headerwrap {
+  background: #AAAAAA url("../imgs/bg-header.jpg") top center;
+}
+
+.headerwrap label {
+  color: #FFFFFF;
+}
+
+.headermenu {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.headertopic {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  color: #FFFFFF;
+}
+
+.headertopic h1 {
+  font-size: 32pt;
+}
+
+.headerselector {
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+/************ BODY ************/
+.bodywrap {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.bodytopic {
+}
+
+.bodytopic__text {
+  padding: 8px 15px;
+  font-size: 18pt;
+  float: left
+}
+
+.bodytopic__text--new {
+  background: #177BCC;
+  color: #FFFFFF;
+}
+
+.bodytopic__arrow {
+  width: 0;
+	height: 0;
+	border-bottom: 20px solid #003F90;
+	border-right: 15px solid transparent;
+  float: left
+}
+.bodytopic__more {
+  margin-top: 20px;
+  float: right;
+}
+
+.bodycontent {
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.bodycontent__item {
+  margin-top: 5px;
+  margin-bottom: 20px;
+
+}
+
+.bodycontent__img {
+  position: relative;
+}
+
+.bodycontent__img .location {
+  position: absolute;
+  top: 6px;
+  right: 5px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: #FF6633;
+  color: #FFFFFF;
+  opacity: 0.85;
+  z-index: 99;
+}
+
+.bodycontent__detail {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.bodycontent__detail .wrap {
+    background:#FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.bodycontent__detail .name {
+  padding-top: 5px;
+  font-size: 14pt;
+}
+
+.bodycontent__detail .price {
+  float: left;
+}
+
+.bodycontent__detail .score {
+  color: #FF3333;
+  float: right;
+}
+
+/*----------------------------------- Restaurants -----------------------------------*/
+.restophead {
+  height: 80px;
+  background: #25282E;
+}
+
+.ressearchbar {
+    background: #FFFFFF;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0 1px 2px #d9dadb;
+}
+
+.ressearchbar--scroll {
+    background: #FFFFFF;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0 1px 2px #d9dadb;
+    position: fixed;
+    z-index: 9999;
+}
+
+
+
+.resbody {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.resbody__wrapheader {
+    padding-bottom: 10px;
+}
+
+.resbody__wrapheader .name {
+    font-size: 26pt;
+    font-weight: bold;
+}
+
+.resbody__wrapimg {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.resbody__wrapimg .title {
+  padding: 50px 20px 20px 20px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.resbody__wrapimg .title h1 {
+    font-size: 26pt;
+    font-weight: bold;
+}
+
+.resbody__wrapimg .title a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.title_shadow {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  color: #FFFFFF;
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0), #000000);
+  background: -o-linear-gradient(rgba(0, 0, 0, 0), #000000);
+  background: -moz-linear-gradient(rgba(0, 0, 0, 0), #000000);
+  background: linear-gradient(rgba(0, 0, 0, 0), #000000);
+}

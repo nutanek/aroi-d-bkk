@@ -1,0 +1,95 @@
+
+    <div class="container-fluid headerwrap">
+        <div class="col-xs-12">
+            <div class="col-xs-12">
+                <div class="row headermenu text-right">
+                    <div class="col-md-4 text-left">
+                        <a href="#/add-restaurant" class="btn btn-sm btn-success" role="button">
+                            <i class="glyphicon glyphicon-plus"></i> เพิ่มร้าน
+                        </a>
+                    </div>
+                    <div class="col-md-8 text-right">
+                        <a href="#" class="btn btn-sm btn-primary" role="button">
+                            <i class="glyphicon glyphicon-star"></i> ร้านอาหารมาใหม่
+                        </a>
+                        <a href="#" class="btn btn-sm btn-danger" role="button">
+                            <i class="glyphicon glyphicon-heart"></i> คะแนนสูงสุด
+                        </a>
+                        <a href="#" class="btn btn-sm btn-warning" role="button">
+                            ติดต่อเรา
+                        </a>
+                    </div>
+                </div>
+                <div class="row headertopic text-center">
+                    <h1 class="font-2">วันนี้จะกินอะไรดี ?</h1>
+                </div>
+                <div class="row headerselector">
+                    <form class="" action="index.html" method="post">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <select class="form-control input-lg" ng-model="resAreaSelected" ng-options="item.name for item in resArea"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group has-feedback has-feedback-left">
+                                <input type="text" class="form-control input-lg" placeholder="กินอะไรดี?" />
+                                <i class="form-control-feedback glyphicon glyphicon-search"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-block btn-lg btn-default">ค้นหา</button>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container bodywrap">
+        <div class="col-xs-12">
+            <div class="col-xs-12">
+                <div class="row bodytopic">
+                    <div class="col-xs-12">
+                        <span class="bodytopic__text bodytopic__text--new font-2">ร้านอาหารมาใหม่</span>
+                        <div class="bodytopic__arrow"></div>
+                        <div class="bodytopic__more">
+                            ดูทั้งหมด <i class="glyphicon glyphicon-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bodycontent">
+                    <section class="col-md-4 col-sm-6 bodycontent__item" ng-repeat="res in bestScoreRestaurants">
+                        <div class="col-xs-12 bodycontent__img boxshadow">
+                            <a href="#/restaurant/{{ res.id }}">
+                                <span class="location">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{ res.area }}
+                                </span>
+                                <div class="row wrapimg img-effect-2" crop-img wrap-height="0.5" ng-style="wrapSize">
+                                    <img class="img" ng-style="imgSize" ng-src="upload/{{ res.img }}_thumb.jpg"/>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="row bodycontent__detail">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 wrap boxshadow">
+                                    <div class="name">
+                                        <a href="#/restaurant/{{ res.id }}">{{ res.name }}</a>
+                                    </div>
+                                    <div class="">{{ res.type }}</div>
+                                    <div>
+                                        <div class="price">
+                                            ฿ {{ res.price.min }}-{{ res.price.max }}
+                                        </div>
+                                        <div class="score">
+                                            <i class="fa fa-heart" aria-hidden="true"></i> <b>{{ res.score }}</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>

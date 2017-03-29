@@ -1,0 +1,66 @@
+<div class="container-fulid">
+    <header-app search-bar=true></header-app>
+    <div class="col-xs-12 resbody">
+        <div class="container" ng-if="restaurant.length!=0">
+            <div class="row resbody__wrapheader visible-xs">
+                <div class="col-md-8">
+                    <div>
+                        <h1 class="name font-2">{{ restaurant.name }}</h1>
+                    </div>
+                    <div>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> {{ restaurant.area }}, กรุงเทพมหานคร
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    dsdsd
+                </div>
+            </div>
+            <div class="row resbody__wrapimg">
+                <div class="col-md-8">
+                    <div class="col-xs-12 boxshadow">
+                        <div class="row wrapimg" crop-img wrap-height="0.5" ng-style="wrapSize">
+                            <img class="img" ng-style="imgSize" ng-src="upload/{{ restaurant.img }}_full.jpg"/>
+                            <div class="title title_shadow hidden-xs">
+                                <h1 class="font-2">{{ restaurant.name }}</h1>
+                                <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ restaurant.area }}, กรุงเทพมหานคร</p>
+                                <p>฿ {{ restaurant.price.min }} - {{ restaurant.price.max }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-xs-12 boxshadow" ng-init="lat=13.76493;">
+                        <div class="row wrapimg" crop-img wrap-height="1.04" ng-style="wrapSize">
+                            <img class="img" ng-style="imgSize" ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{ restaurant.map.lat }},{{ restaurant.map.lng }}&zoom=18&size=600x500&markers=color:red|icon:http://icons.iconarchive.com/icons/paomedia/small-n-flat/64/map-marker-icon.png|{{ restaurant.map.lat }},{{ restaurant.map.lng }}&key=AIzaSyCL_WJGAK__EjZPogQ6W5fFPhJfD-bI0PE"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row resbody__wrapimg">
+                <div class="col-md-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><i class="fa fa-home"></i> ข้อมูลร้าน</div>
+                        <div class="panel-body">
+                            {{ restaurant.content }}
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><i class="fa fa-home"></i> ข้อมูลร้าน</div>
+                        <div class="panel-body">
+                            sss
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            sss {{ divSize }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6gFvIgL4dUvIr48Yt1Uo4qJ8KI-6tO4M&callback=mapRestaurant"></script> -->
