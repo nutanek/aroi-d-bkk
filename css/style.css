@@ -251,3 +251,35 @@ body {
   background: -moz-linear-gradient(rgba(0, 0, 0, 0), #000000);
   background: linear-gradient(rgba(0, 0, 0, 0), #000000);
 }
+
+.resbodyscore h1 {
+    color: #e74c3c;
+}
+
+/*.resbodyscore label {
+    fo
+}*/
+
+.resbodyscore .progress {
+    height: 5px;
+    border-radius: 0px;
+    background: #DDDDDD;
+    box-shadow: none;
+}
+
+.resbodyscore .progress-bar-atm {
+    background: #189f46;
+}
+
+.resbodyscore .progress-bar-taste {
+    background: #8e3371;
+}
+
+.resbodyscore .progress-bar-service {
+    background: #e7b00d;
+}
+
+.resbodyscore .button {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
