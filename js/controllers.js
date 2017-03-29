@@ -119,7 +119,6 @@ app.controller('addNewRestaurant', [
             var uploadUrl = "controller/fileUpload.php";
             fileUpload.uploadFileToUrl(file, uploadUrl, name);
         };
-
     }
 ]);
 
@@ -133,6 +132,7 @@ app.controller('showRestaurant', [
         $timeout(function() {
             $http.get("api/show-restaurant.php?id=" + $scope.idRes).then(function(response) {
                 $scope.restaurant = response.data.body;
+                $scope.totalScoreAvg = $scope.restaurant.score.totalAvg;
                 console.log($scope.restaurant);
             });
         });

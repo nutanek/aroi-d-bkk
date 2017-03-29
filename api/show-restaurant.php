@@ -34,11 +34,12 @@
 						"max" => $row->max_price
 					),
                     "score" => array(
-                        "atm" => $row->score_atm,
-                        "taste" => $row->score_taste,
-                        "service" => $row->score_service
+                        "atm" => (int)$row->score_atm,
+                        "taste" => (int)$row->score_taste,
+                        "service" => (int)$row->score_service,
+						"totalAvg" => (float)$row->score_total
                     ),
-                    "numVote" => $row->num_vote,
+                    "numVote" => (int)$row->num_vote,
                     "service" => array(
                         "1" => $row->service_1,
                         "2" => $row->service_2,

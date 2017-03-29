@@ -152,3 +152,37 @@ app.directive("preloadingPage", [
         };
     }
 ]);
+
+app.directive("numberCounter", function() {
+    return {
+        restrict: 'A',
+        controller: function($scope, $timeout) {
+            this.updateNum = function(score) {
+                $timeout(function() {
+                    $scope.numScore = score;
+                });
+            }
+        },
+        link: function(scope, element, attrs, ctrl) {
+
+            scope.$watch('totalScoreAvg', function(newVal) {
+                if (newVal) {
+                    var initScore = 0;
+                    var targetedScore = scope.totalScoreAvg;
+                    var duration = 900;
+                    var uptime = 20;
+                    var increase = targetedScore / (duration / uptime);
+
+                    var increaseNum = setInterval(function() {
+                        initScore = initScore + increase;
+                        ctrl.updateNum(initScore.toFixed(1));
+                        if (initScore >= targetedScore) {
+                            clearInterval(increaseNum);
+                            ctrl.updateNum(targetedScore);
+                        }
+                    }, uptime);
+                }
+            }, true);
+        }
+    };
+});
