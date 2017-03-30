@@ -30,7 +30,7 @@
 						"min" => $row->min_price,
 						"max" => $row->max_price
 					),
-					"score" => $row->score_total,
+					"scoreTotal" => $row->score_total,
 					"img" => $row->img
 				));
 		    }
