@@ -74,9 +74,6 @@
 				"status" => "error"
 			));
 		}
-
-		// $arr = array('a' => $data['name'], 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
-		// echo json_encode($arr);
 	} else {
 		echo json_encode(array(
 			"status" => "error"

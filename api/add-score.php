@@ -53,7 +53,6 @@
 			));
 		}
 
-
 	} else {
 		echo json_encode(array(
 			"status" => "error"
