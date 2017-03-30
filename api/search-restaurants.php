@@ -14,7 +14,9 @@
 
 			$sql = "select *
 		            from   restaurant
-		            where  content like '$data[keyword]%'
+		            where  content like '%$data[keyword]%'
+		            	or type_res = '$data[keyword]'
+
 		            	
 		            	";
                     
