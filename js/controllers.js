@@ -129,6 +129,8 @@ app.controller('showRestaurant', [
     '$routeParams',
     function($scope, $timeout, $http, $routeParams) {
         $scope.idRes = $routeParams.id;
+        $scope.scoreHover = [0, 0, 0];
+        $scope.scoreClick = [0, 0, 0];
         $timeout(function() {
             $http.get("api/show-restaurant.php?id=" + $scope.idRes).then(function(response) {
                 $scope.restaurant = response.data.body;
@@ -136,5 +138,33 @@ app.controller('showRestaurant', [
                 console.log($scope.restaurant);
             });
         });
+
+        $scope.hoverScore = function(type, score) {
+            $scope.scoreHover[type] = score;
+        }
+
+        $scope.clickScore = function(type, score) {
+            $scope.scoreClick[type] = score;
+            $scope.scoreHover[type] = score;
+        }
+
+        $scope.leaveScore = function(type, score) {
+            if(type === 1) {
+                $scope.scoreAtmHover = score;
+            } else if(type === 2) {
+                $scope.scoreTasteHover = score;
+            } else if(type === 3) {
+                $scope.scoreServiceHover = score;
+            }
+        }
+
+        $scope.range = function(count) {
+            var ratings = [];
+            for (var i = 0; i < count; i++) {
+                ratings.push(i)
+            }
+            return ratings;
+        }
     }
+
 ]);

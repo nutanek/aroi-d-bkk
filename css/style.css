@@ -9,7 +9,7 @@
 
 /*-------------- loading page ----------------*/
 .loader-line {
-  height: 2px;
+  height: 3px;
   width: 100%;
   position: fixed;
   overflow: hidden;
@@ -22,7 +22,7 @@
   content: "";
   left: -200px;
   width: 200px;
-  height: 4px;
+  height: 3px;
   background-color: #e74c3c;
   animation: loading-line 1s linear infinite;
   z-index: 9999999;
@@ -72,6 +72,13 @@ body {
 
 .boxshadow {
     box-shadow: 0px 0px 5px #CCCCCC;
+}
+
+.modal {
+    z-index: 99999;
+}
+.modal-backdrop {
+    z-index: 9999;
 }
 
 /************ WRAP IMG ************/
@@ -233,8 +240,6 @@ body {
     z-index: 9999;
 }
 
-
-
 .resbody {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -286,10 +291,6 @@ body {
     color: #e74c3c;
 }
 
-/*.resbodyscore label {
-    fo
-}*/
-
 .resbodyscore .progress {
     height: 5px;
     border-radius: 0px;
@@ -311,5 +312,22 @@ body {
 
 .resbodyscore .button {
     margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+/*----------------------------------- add score -----------------------------------*/
+#addScore .love {
+    margin: 10px 0px 20px 0px;
+    font-size: 20pt;
+    color: #CCCCCC;
+    cursor: pointer;
+}
+
+#addScore .love--red {
+    color: #e74c3c;
+    cursor: pointer;
+}
+
+#addScore .score {
     margin-bottom: 15px;
 }
