@@ -23,6 +23,7 @@ app.controller('homePage', [
         $timeout(function() {
             $http.get("api/show-new-restaurants.php?num=6").then(function(response) {
                 $scope.newRestaurants = response.data.body;
+                console.log($scope.newRestaurants);
             });
         });
         $timeout(function() {
@@ -148,14 +149,41 @@ app.controller('showRestaurant', [
             $scope.scoreHover[type] = score;
         }
 
-        $scope.leaveScore = function(type, score) {
-            if(type === 1) {
-                $scope.scoreAtmHover = score;
-            } else if(type === 2) {
-                $scope.scoreTasteHover = score;
-            } else if(type === 3) {
-                $scope.scoreServiceHover = score;
+        $scope.resetScore = function() {
+            $scope.scoreHover = [0, 0, 0];
+            $scope.scoreClick = [0, 0, 0];
+        }
+
+        $scope.addScore = function() {
+            let req = {
+                method: 'POST',
+                url: 'api/add-score.php',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: {
+                    idRes: $scope.idRes,
+                    scoreAtm: $scope.scoreClick[0],
+                    scoreTaste: $scope.scoreClick[1],
+                    scoreService: $scope.scoreClick[2]
+                }
             }
+            $http(req).then(function(response) {
+                console.log(response.data);
+
+                if (response.data.status === "success") {
+
+                } else {
+                    $timeout(function() {
+                        $('#warningAddNew').modal('show');
+                    });
+                    $rootScope.loading = false;
+                }
+            }, function(data) {
+                $timeout(function() {
+                    $('#warningAddNew').modal('show');
+                });
+            });
         }
 
         $scope.range = function(count) {
