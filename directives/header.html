@@ -1,77 +1,147 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip({
+            placement: "bottom",
+            container: "body"
+        });
+    });
+</script>
 <div class="col-xs-12 restophead">
     <div class="container">
         ss
     </div>
 </div>
-<div class="col-xs-12 ressearchbar hidden-sm hidden-xs" ng-if="searchBar">
-    <div class="container">
-        <div class="col-md-5">
-            <input type="text" class="form-control" id="usr" placeholder="ชื่อร้าน, ชื่ออาหาร">
-        </div>
-        <div class="col-md-2">
-            <select class="form-control" id="sel1">
-                <option>ที่ไหนก็ได้</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select class="form-control" id="sel1">
-                <option>ทุกประเภท</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select class="form-control" id="sel1">
-                <option>ไม่จำกัดราคา</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
-        <div class="col-md-1">
-            <button type="button" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-search"></i></button>
+<div ng-if="searchBar">
+    <div class="col-xs-12 ressearchbar hidden-sm hidden-xs">
+        <div class="container">
+            <div class="col-md-5">
+                <input type="text" class="form-control" ng-model="keyword" placeholder="ชื่อร้าน, ชื่ออาหาร">
+            </div>
+            <div class="col-md-2">
+                <select class="form-control" ng-model="areaSelected" ng-options="item.name for item in area"></select>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control" id="sel1">
+                    <option>ไม่จำกัดราคา</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+            <div class="col-md-2">
+                <div class="btn-group btn-group-justified">
+                    <button type="button" class="btn btn-default" style="width: 65%;" data-toggle="modal" data-target="#searchAdvance" ng-click="setSlider()">ค้นละเอียด</button>
+                    <button type="button" class="btn btn-default" style="width: 35%;" data-toggle="tooltip" title="ค้นหาจากแผนที่"><i class="fa fa-map-o" aria-hidden="true"></i></button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="col-xs-12 ressearchbar--scroll hidden-sm hidden-xs" ng-if="searchBar" ng-style="{ visibility: showSearchBar }" scroll-show-search>
-    <div class="container">
-        <div class="col-md-2">
-            logo
+    <div class="col-xs-12 ressearchbar--scroll hidden-sm hidden-xs" ng-style="{ visibility: showSearchBar }" scroll-show-search>
+        <div class="container">
+            <div class="col-md-2">
+                logo
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" ng-model="keyword" placeholder="ชื่อร้าน, ชื่ออาหาร">
+            </div>
+            <div class="col-md-2">
+                <select class="form-control" ng-model="areaSelected" ng-options="item.name for item in area"></select>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control" id="sel1">
+                    <option>ไม่จำกัดราคา</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
         </div>
-        <div class="col-md-3">
-            <input type="text" class="form-control" id="usr" placeholder="ชื่อร้าน, ชื่ออาหาร">
-        </div>
-        <div class="col-md-2">
-            <select class="form-control" id="sel1">
-                <option>ที่ไหนก็ได้</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select class="form-control" id="sel1">
-                <option>ทุกประเภท</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select class="form-control" id="sel1">
-                <option>ไม่จำกัดราคา</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
-        <div class="col-md-1">
-            <button type="button" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-search"></i></button>
+    </div>
+
+    <!-- Modal -->
+    <div id="searchAdvance" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><i class="fa fa-search" aria-hidden="true"></i> ค้นหาแบบละเอียด</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>คำค้นหา:</label>
+                                    <input type="text" class="form-control" ng-model="keyword" placeholder="ชื่อร้าน, ชื่ออาหาร">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>ประเภท:</label>
+                                    <select class="form-control" ng-model="typeSelected" ng-options="item.name for item in type"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>เขต (ในกรุงเทพ):</label>
+                                    <select class="form-control" ng-model="areaSelected" ng-options="item.name for item in area"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>ราคา (ต่อคน):</label>
+                                    <rzslider rz-slider-model="price.minValue" rz-slider-high="price.maxValue" rz-slider-options="price.options"></rzslider>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>คะแนนรวม:</label>
+                                    <rzslider rz-slider-model="score.value" rz-slider-options="score.options"></rzslider>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>บริการเสริม:</label>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="">ที่จอดรถ</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="">Wi-fi</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="">เครื่องปรับอาการ</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="">ทีวี</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="">วงดนตรีสด</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

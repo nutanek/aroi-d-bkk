@@ -27,12 +27,12 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <select class="form-control input-lg" ng-model="resAreaSelected" ng-options="item.name for item in resArea"></select>
+                            <select class="form-control input-lg" ng-model="resAreaSelected" ng-options="item.name for item in resArea" ng-enter="searchRestaurant()"></select>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group has-feedback has-feedback-left">
-                            <input type="text" class="form-control input-lg" ng-model="resKeyword" placeholder="กินอะไรดี?" />
+                            <input type="text" class="form-control input-lg" ng-model="resKeyword" ng-enter="searchRestaurant()" placeholder="กินอะไรดี?" />
                             <i class="form-control-feedback glyphicon glyphicon-search"></i>
                         </div>
                     </div>

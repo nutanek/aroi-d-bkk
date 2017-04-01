@@ -1,4 +1,4 @@
-var app = angular.module('AroiDBkk', ['ngRoute']);
+var app = angular.module('AroiDBkk', ['ngRoute', 'rzModule']);
 
 app.run([
     '$location',
@@ -283,5 +283,70 @@ app.controller('searchRestaurant', [
             }
             return key;
         }
+    }
+]);
+
+app.controller('searchBarTop', [
+    '$scope',
+    '$timeout',
+    '$http',
+    '$location',
+    '$window',
+    function($scope, $timeout, $http, $location, $window) {
+        $scope.price = {
+            minValue: 0,
+            maxValue: 2000,
+            options: {
+                hideLimitLabels: true,
+                floor: 0,
+                ceil: 2000,
+                step: 50,
+                minRange: 50,
+                translate: function(value) {
+                    return value + ' บาท';
+                }
+            }
+        };
+        $scope.score = {
+            value: 0,
+            options: {
+                hideLimitLabels: true,
+                floor: 0,
+                ceil: 10,
+                showTicks: true,
+                translate: function(value) {
+                    if (value < 1)
+                        return 'ทุกคะแนน'
+                    if (value < 10)
+                        return '<b>' + value + '</b> คะแนนขึ้นไป';
+                    if (value > 9)
+                        return '<b>' + value + '</b> คะแนน';
+                },
+                getTickColor: function(value) {
+                    if (value < 3)
+                        return '#FFC4C4';
+                    if (value < 6)
+                        return '#FE8181';
+                    if (value < 9)
+                        return '#FE4E4E';
+                    return '#FF0000';
+                },
+                getPointerColor: function(value) {
+                    return '#FF0000';
+                }
+            }
+        };
+        $scope.keyword = "";
+        $scope.area = menuAreaRes;
+        $scope.areaSelected = $scope.area[0];
+        $scope.type = menuTypeRes;
+        $scope.typeSelected = $scope.type[0];
+
+        $scope.setSlider = function() {
+            $timeout(function() {
+                $scope.$broadcast('rzSliderForceRender');
+            }, 400);
+        }
+
     }
 ]);
