@@ -30,8 +30,8 @@
                     "tel" => $row->tel,
                     "content" => $row->content,
 					"price" => array(
-						"min" => $row->min_price,
-						"max" => $row->max_price
+						"min" => (float)$row->min_price,
+						"max" => (float)$row->max_price
 					),
                     "score" => array(
                         "atm" => (int)$row->score_atm,

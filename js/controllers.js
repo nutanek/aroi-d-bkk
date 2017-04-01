@@ -132,10 +132,12 @@ app.controller('showRestaurant', [
         $scope.idRes = $routeParams.id;
         $scope.scoreHover = [0, 0, 0];
         $scope.scoreClick = [0, 0, 0];
+        $scope.alertScore = false;
         $timeout(function() {
             $http.get("api/show-restaurant.php?id=" + $scope.idRes).then(function(response) {
                 $scope.restaurant = response.data.body;
                 $scope.totalScoreAvg = $scope.restaurant.score.totalAvg;
+                calScore();
                 console.log($scope.restaurant);
             });
         });
@@ -152,9 +154,15 @@ app.controller('showRestaurant', [
         $scope.resetScore = function() {
             $scope.scoreHover = [0, 0, 0];
             $scope.scoreClick = [0, 0, 0];
+            $scope.alertScore = false;
         }
 
         $scope.addScore = function() {
+            if ($scope.scoreClick[0] == 0 || $scope.scoreClick[2] == 0 || $scope.scoreClick[3] == 0) {
+                $scope.alertScore = true;
+                return;
+            }
+
             let req = {
                 method: 'POST',
                 url: 'api/add-score.php',
@@ -169,20 +177,12 @@ app.controller('showRestaurant', [
                 }
             }
             $http(req).then(function(response) {
-                console.log(response.data);
-
                 if (response.data.status === "success") {
-
-                } else {
                     $timeout(function() {
-                        $('#warningAddNew').modal('show');
+                        $('#addScore').modal('hide');
                     });
-                    $rootScope.loading = false;
+                    refreshScore();
                 }
-            }, function(data) {
-                $timeout(function() {
-                    $('#warningAddNew').modal('show');
-                });
             });
         }
 
@@ -192,6 +192,27 @@ app.controller('showRestaurant', [
                 ratings.push(i)
             }
             return ratings;
+        }
+
+        function refreshScore() {
+            if ($scope.restaurant.numVote > 0) {
+                $scope.restaurant.score.atm = ($scope.restaurant.score.atm * $scope.restaurant.numVote) + $scope.scoreClick[0];
+                $scope.restaurant.score.taste = ($scope.restaurant.score.taste * $scope.restaurant.numVote) + $scope.scoreClick[0];
+                $scope.restaurant.score.service = ($scope.restaurant.score.service * $scope.restaurant.numVote) + $scope.scoreClick[0];
+            } else {
+                $scope.restaurant.score.atm = $scope.scoreClick[0];
+                $scope.restaurant.score.taste = $scope.scoreClick[1];
+                $scope.restaurant.score.service = $scope.scoreClick[2];
+            }
+            $scope.restaurant.numVote++;
+            calScore();
+            $scope.totalScoreAvg = (($scope.restaurant.score.atm + $scope.restaurant.score.taste + $scope.restaurant.score.service) / 3).toFixed(1);
+        }
+
+        function calScore() {
+            $scope.restaurant.score.atm = parseFloat(($scope.restaurant.score.atm / $scope.restaurant.numVote).toFixed(1));
+            $scope.restaurant.score.taste = parseFloat(($scope.restaurant.score.taste / $scope.restaurant.numVote).toFixed(1));
+            $scope.restaurant.score.service = parseFloat(($scope.restaurant.score.service / $scope.restaurant.numVote).toFixed(1));
         }
     }
 
