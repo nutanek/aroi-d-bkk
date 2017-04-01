@@ -15,7 +15,8 @@ var menuTypeRes = [
 
 
 var menuAreaRes = [
-	{ id: "1", name: "คลองสาน" },
+    { id: "0", name: "ที่ไหนก็ได้" },
+    { id: "1", name: "คลองสาน" },
 	{ id: "2", name: "คลองสามวา" },
 	{ id: "3", name: "คลองเตย" },
 	{ id: "4", name: "คันนายาว" },

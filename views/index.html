@@ -32,12 +32,12 @@
                     </div>
                     <div class="col-md-5">
                         <div class="form-group has-feedback has-feedback-left">
-                            <input type="text" class="form-control input-lg" placeholder="กินอะไรดี?" />
+                            <input type="text" class="form-control input-lg" ng-model="resKeyword" placeholder="กินอะไรดี?" />
                             <i class="form-control-feedback glyphicon glyphicon-search"></i>
                         </div>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" class="btn btn-block btn-lg btn-default">ค้นหา</button>
+                        <button type="button" class="btn btn-block btn-lg btn-default" ng-click="searchRestaurant()">ค้นหา</button>
                     </div>
                     <div class="col-md-2"></div>
                 </form>

@@ -16,9 +16,11 @@ app.controller('homePage', [
     '$scope',
     '$timeout',
     '$http',
-    function($scope, $timeout, $http) {
+    '$location',
+    function($scope, $timeout, $http, $location) {
         $scope.resArea = menuAreaRes;
         $scope.resAreaSelected = $scope.resArea[0];
+        $scope.resKeyword = "";
 
         $timeout(function() {
             $http.get("api/show-new-restaurants.php?num=0").then(function(response) {
@@ -31,6 +33,15 @@ app.controller('homePage', [
                 $scope.bestScoreRestaurants = response.data.body;
             });
         });
+        $scope.searchRestaurant = function() {
+            var areaSearch = "";
+            if ($scope.resAreaSelected.id != "0") {
+                areaSearch = $scope.resAreaSelected.name;
+            }
+            $timeout(function() {
+                $location.url('/search?area=' + areaSearch + '&keyword=' + $scope.resKeyword);
+            });
+        }
     }
 ]);
 
@@ -266,9 +277,8 @@ app.controller('searchRestaurant', [
             console.log("dsdsd");
         });
 
-
         function filterSearch(key) {
-            if (typeof key === "undefined" ) {
+            if (typeof key === "undefined") {
                 return "";
             }
             return key;
