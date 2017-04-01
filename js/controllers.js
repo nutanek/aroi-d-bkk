@@ -158,7 +158,7 @@ app.controller('showRestaurant', [
         }
 
         $scope.addScore = function() {
-            if ($scope.scoreClick[0] == 0 || $scope.scoreClick[2] == 0 || $scope.scoreClick[3] == 0) {
+            if ($scope.scoreClick[0] == 0 || $scope.scoreClick[1] == 0 || $scope.scoreClick[2] == 0) {
                 $scope.alertScore = true;
                 return;
             }
@@ -197,8 +197,8 @@ app.controller('showRestaurant', [
         function refreshScore() {
             if ($scope.restaurant.numVote > 0) {
                 $scope.restaurant.score.atm = ($scope.restaurant.score.atm * $scope.restaurant.numVote) + $scope.scoreClick[0];
-                $scope.restaurant.score.taste = ($scope.restaurant.score.taste * $scope.restaurant.numVote) + $scope.scoreClick[0];
-                $scope.restaurant.score.service = ($scope.restaurant.score.service * $scope.restaurant.numVote) + $scope.scoreClick[0];
+                $scope.restaurant.score.taste = ($scope.restaurant.score.taste * $scope.restaurant.numVote) + $scope.scoreClick[1];
+                $scope.restaurant.score.service = ($scope.restaurant.score.service * $scope.restaurant.numVote) + $scope.scoreClick[2];
             } else {
                 $scope.restaurant.score.atm = $scope.scoreClick[0];
                 $scope.restaurant.score.taste = $scope.scoreClick[1];
