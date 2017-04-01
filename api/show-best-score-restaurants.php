@@ -31,7 +31,8 @@
 						"max" => $row->max_price
 					),
 					"scoreTotal" => $row->score_total,
-					"img" => $row->img
+					"img" => $row->img,
+					"score" => (float)$row->score_total
 				));
 		    }
 			$restaurants = array_merge($header, array("body" => $body));
