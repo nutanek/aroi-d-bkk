@@ -2,37 +2,42 @@
     <header-app search-bar=true></header-app>
     <div class="col-xs-12 resbody">
         <div class="container">
-            <div class="row blanktop"></div>
-            <section class="col-md-4 col-sm-6 bodycontent__item" ng-repeat="i in [1,2,3,4,5,6,7,8]">
-                <div class="col-xs-12 bodycontent__img boxshadow">
-                    <span class="location">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> รัชดาภิเษก
-                    </span>
-                    <div class="row wrapimg img-effect-2" crop-img wrap-height="0.5" ng-style="wrapSize">
-                        <img class="img" ng-style="imgSize" src="http://indytheme.com/govariety/wp-content/uploads/2017/02/aHR0cDovL3A0LmlzYW5vb2suY29tL2hlLzAvdWQvMS82MjE3L2Jha2VyeS5qcGc-300x180.jpg"/>
+
+            <div ng-repeat="res in foundRestaurants">
+                <section class="col-md-4 col-sm-6 bodycontent__item">
+                    <div class="col-xs-12 bodycontent__img boxshadow">
+                        <a href="#/restaurant/{{ res.id }}">
+                            <span class="location">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{ res.area }}
+                                </span>
+                            <div class="row wrapimg img-effect-2" crop-img wrap-height="0.5" ng-style="wrapSize">
+                                <img class="img" ng-style="imgSize" ng-src="upload/{{ res.img }}_thumb.jpg" />
+                            </div>
+                        </a>
                     </div>
-                </div>
-                <div class="row bodycontent__detail">
-                    <div class="col-xs-12">
-                        <div class="col-xs-12 wrap boxshadow">
-                            <div class="name">
-                                ร้านปั่นแหลก ณ ลาดกระบัง
-                            </div>
-                            <div class="">
-                                เครื่องดื่ม/น้ำปั่น
-                            </div>
-                            <div>
-                                <div class="price">
-                                    ฿ 120-300
+                    <div class="row bodycontent__detail">
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 wrap boxshadow">
+                                <div class="name">
+                                    <a href="#/restaurant/{{ res.id }}">{{ res.name }}</a>
                                 </div>
-                                <div class="score">
-                                    <i class="fa fa-heart" aria-hidden="true"></i> <b>8.5</b>
+                                <div class="">{{ res.type }}</div>
+                                <div>
+                                    <div class="price">
+                                        ฿ {{ res.price.min }}-{{ res.price.max }}
+                                    </div>
+                                    <div class="score" ng-if="res.score>0">
+                                        <i class="fa fa-heart" aria-hidden="true"></i> <b>{{ res.score }}</b>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+                <div ng-show="($index%3)==2" class="visible-md visible-lg col-md-12"></div>
+                <div ng-show="($index%2)==1" class="visible-sm col-sm-12"></div>
+            </div>
+
         </div>
     </div>
 </div>

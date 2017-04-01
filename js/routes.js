@@ -7,6 +7,7 @@ app.config(function($routeProvider) {
     })
     .when("/search", {
         title : "ค้นหาร้านอาหาร",
+        controller: "searchRestaurant",
         templateUrl : "views/search-restaurants.html"
     })
     .when("/add-restaurant", {

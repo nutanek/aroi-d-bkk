@@ -21,13 +21,13 @@ app.controller('homePage', [
         $scope.resAreaSelected = $scope.resArea[0];
 
         $timeout(function() {
-            $http.get("api/show-new-restaurants.php?num=6").then(function(response) {
+            $http.get("api/show-new-restaurants.php?num=0").then(function(response) {
                 $scope.newRestaurants = response.data.body;
                 console.log($scope.newRestaurants);
             });
         });
         $timeout(function() {
-            $http.get("api/show-best-score-restaurants.php?num=6").then(function(response) {
+            $http.get("api/show-best-score-restaurants.php?num=0").then(function(response) {
                 $scope.bestScoreRestaurants = response.data.body;
             });
         });
@@ -215,5 +215,63 @@ app.controller('showRestaurant', [
             $scope.restaurant.score.service = parseFloat(($scope.restaurant.score.service / $scope.restaurant.numVote).toFixed(1));
         }
     }
+]);
 
+app.controller('searchRestaurant', [
+    '$scope',
+    '$timeout',
+    '$http',
+    '$routeParams',
+    '$location',
+    function($scope, $timeout, $http, $routeParams, $location) {
+        var qs = $location.search();
+
+        var keyword = filterSearch(qs['keyword']);
+        var area = filterSearch(qs['area']);
+        var minPrice = filterSearch(qs['minPrice']);
+        var maxPrice = filterSearch(qs['maxPrice']);
+        var scoreTotal = filterSearch(qs['scoreTotal']);
+        var service1 = filterSearch(qs['service1']);
+        var service2 = filterSearch(qs['service2']);
+        var service3 = filterSearch(qs['service3']);
+        var service4 = filterSearch(qs['service4']);
+        var service5 = filterSearch(qs['service5']);
+
+        console.log(area, keyword);
+
+        let req = {
+            method: 'POST',
+            url: 'api/search-restaurants.php',
+            headers: {
+                'Content-Type': "application/json"
+            },
+            data: {
+                keyword: keyword,
+                areaRes: area,
+                minPrice: minPrice,
+                maxPrice: maxPrice,
+                scoreTotal: scoreTotal,
+                service1: service1,
+                service2: service2,
+                service3: service3,
+                service4: service4,
+                service5: service5
+            }
+        }
+        $http(req).then(function(response) {
+            if (response.data.status === "success") {
+                $scope.foundRestaurants = response.data.body;
+                console.log(response.data.body);
+            }
+            console.log("dsdsd");
+        });
+
+
+        function filterSearch(key) {
+            if (typeof key === "undefined" ) {
+                return "";
+            }
+            return key;
+        }
+    }
 ]);
