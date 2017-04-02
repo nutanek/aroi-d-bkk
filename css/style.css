@@ -81,6 +81,35 @@ body {
     z-index: 9999;
 }
 
+/*--------------------- Dropdown Type --------------------*/
+
+.dropdown-keyword {
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    left: 0;
+    overflow-y: auto;
+}
+
+.dropdown-keyword .panel-body {
+    /*width: 100%;*/
+}
+
+.dropdown-keyword .panel-body:hover {
+    cursor: pointer;
+    background: #EEEEEE;
+}
+
+.dropdown-keyword .panel-body .icon {
+    width: 24px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.headerselector .dropdown-menu {
+    padding: 0;
+}
+
 /************ WRAP IMG ************/
 .wrapimg {
     position: relative;

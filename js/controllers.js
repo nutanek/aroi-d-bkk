@@ -20,6 +20,7 @@ app.controller('homePage', [
     function($scope, $timeout, $http, $location) {
         $scope.resArea = menuAreaRes;
         $scope.resAreaSelected = $scope.resArea[0];
+        $scope.resType = menuTypeRes.slice(1);
         $scope.resKeyword = "";
 
         $timeout(function() {
@@ -33,6 +34,11 @@ app.controller('homePage', [
                 $scope.bestScoreRestaurants = response.data.body;
             });
         });
+
+        $scope.selectResType = function(keyword) {
+            $scope.resKeyword = keyword;
+        }
+
         $scope.searchRestaurant = function() {
             var areaSearch = "";
             if ($scope.resAreaSelected.id != "0") {

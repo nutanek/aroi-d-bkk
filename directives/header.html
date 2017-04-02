@@ -4,6 +4,9 @@
             placement: "bottom",
             container: "body"
         });
+        $('.dropdown-menu').click(function(event) {
+            event.stopPropagation();
+        });
     });
 </script>
 <div class="col-xs-12 restophead">

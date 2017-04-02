@@ -31,9 +31,14 @@
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <div class="form-group has-feedback has-feedback-left">
-                            <input type="text" class="form-control input-lg" ng-model="resKeyword" ng-enter="searchRestaurant()" placeholder="กินอะไรดี?" />
+                        <div class="form-group has-feedback has-feedback-left dropdown">
+                            <input type="text" class="form-control input-lg" ng-model="resKeyword" data-toggle="dropdown" ng-enter="searchRestaurant()" placeholder="กินอะไรดี?" />
                             <i class="form-control-feedback glyphicon glyphicon-search"></i>
+                            <div class="panel panel-default dropdown-keyword dropdown-menu" ng-style="filtered.length==0 ? {'border':'0'}: ''">
+                                <div class="panel-body" ng-class="filtered.length==1 ? 'col-md-12': 'col-md-6'" ng-repeat="type in filtered = (resType | filter:resKeyword)" ng-click="selectResType(type.name)">
+                                    <img class="icon" ng-src="imgs/icon_type/{{ type.id }}.png" alt="">{{ type.name }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-1">
