@@ -21,6 +21,11 @@
 	            $sqlAppend[1] = "area_res = '$data[areaRes]'";
 	        }
 	    }
+		if (isset($data['type'])) {
+	        if ($data['type'] != null) {
+	            $sqlAppend[1] = "type_res = '$data[type]'";
+	        }
+	    }
 	    if (isset($data['minPrice']) && isset($data['maxPrice'])) {
 	        if ($data['minPrice'] != null && $data['maxPrice'] != null) {
 	            $sqlAppend[2] = "min_price >= '$data[minPrice]' and max_price <= '$data[maxPrice]'";

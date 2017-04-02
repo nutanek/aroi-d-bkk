@@ -53,12 +53,12 @@
 			echo json_encode($restaurants, JSON_UNESCAPED_UNICODE);
 		} else {
 			echo json_encode(array(
-				"status" => "error1"
+				"status" => "error"
 			));
 		}
 	} else {
 		echo json_encode(array(
-			"status" => "error2"
+			"status" => "error"
 		));
 	}
 ?>

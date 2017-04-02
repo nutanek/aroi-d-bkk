@@ -11,7 +11,7 @@
         ss
     </div>
 </div>
-<div ng-if="searchBar">
+<div ng-show="searchBar">
     <div class="col-xs-12 ressearchbar hidden-sm hidden-xs">
         <div class="container">
             <div class="col-md-5">
@@ -21,15 +21,24 @@
                 <select class="form-control" ng-model="areaSelected" ng-options="item.name for item in area"></select>
             </div>
             <div class="col-md-2">
-                <select class="form-control" id="sel1">
-                    <option>ไม่จำกัดราคา</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
+                <div class="dropdown">
+                    <button class="btn btn-block btn-default dropdown-toggle" type="button" data-toggle="dropdown" ng-click="setSlider()">
+                        <span class="col-lg-9">
+                            {{ price.minValue }} - {{ price.maxValue }} บาท
+                        </span>
+                        <span class="col-lg-2">
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                    <div class="dropdown-menu" style="width: 200px;">
+                        <div class="col-xs-12">
+                            <rzslider rz-slider-model="price.minValue" rz-slider-high="price.maxValue" rz-slider-options="price.options"></rzslider>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-1">
-                <button type="button" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-search"></i></button>
+                <button type="button" class="btn btn-primary btn-block" ng-click="searchRestaurantNormal()"><i class="glyphicon glyphicon-search"></i></button>
             </div>
             <div class="col-md-2">
                 <div class="btn-group btn-group-justified">
@@ -112,23 +121,23 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="checkbox">
-                                                <label><input type="checkbox" value="">ที่จอดรถ</label>
+                                                <label><input type="checkbox" ng-model="service.value1" ng-true-value="1" ng-false-value="">ที่จอดรถ</label>
                                             </div>
                                             <div class="checkbox">
-                                                <label><input type="checkbox" value="">Wi-fi</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">เครื่องปรับอาการ</label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">ทีวี</label>
+                                                <label><input type="checkbox" ng-model="service.value2" ng-true-value="1" ng-false-value="">Wi-fi</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="checkbox">
-                                                <label><input type="checkbox" value="">วงดนตรีสด</label>
+                                                <label><input type="checkbox" ng-model="service.value3" ng-true-value="1" ng-false-value="">เครื่องปรับอาการ</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" ng-model="service.value4" ng-true-value="1" ng-false-value="">ทีวี</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" ng-model="service.value5" ng-true-value="1" ng-false-value="">วงดนตรีสด</label>
                                             </div>
                                         </div>
                                     </div>
@@ -138,7 +147,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="searchRestaurantAdvance()"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button>
                 </div>
             </div>
 

@@ -238,10 +238,11 @@ app.controller('searchRestaurant', [
         var qs = $location.search();
 
         var keyword = filterSearch(qs['keyword']);
+        var type = filterSearch(qs['type']);
         var area = filterSearch(qs['area']);
-        var minPrice = filterSearch(qs['minPrice']);
-        var maxPrice = filterSearch(qs['maxPrice']);
-        var scoreTotal = filterSearch(qs['scoreTotal']);
+        var minPrice = filterSearch(qs['minprice']);
+        var maxPrice = filterSearch(qs['maxprice']);
+        var scoreTotal = filterSearch(qs['score']);
         var service1 = filterSearch(qs['service1']);
         var service2 = filterSearch(qs['service2']);
         var service3 = filterSearch(qs['service3']);
@@ -258,6 +259,7 @@ app.controller('searchRestaurant', [
             },
             data: {
                 keyword: keyword,
+                type: type,
                 areaRes: area,
                 minPrice: minPrice,
                 maxPrice: maxPrice,
@@ -274,7 +276,9 @@ app.controller('searchRestaurant', [
                 $scope.foundRestaurants = response.data.body;
                 console.log(response.data.body);
             }
-            console.log("dsdsd");
+            $timeout(function() {
+                $('#searchAdvance').modal('hide');
+            });
         });
 
         function filterSearch(key) {
@@ -293,6 +297,9 @@ app.controller('searchBarTop', [
     '$location',
     '$window',
     function($scope, $timeout, $http, $location, $window) {
+        $timeout(function() {
+            $('#searchAdvance').modal('hide');
+        });
         $scope.price = {
             minValue: 0,
             maxValue: 2000,
@@ -316,7 +323,7 @@ app.controller('searchBarTop', [
                 showTicks: true,
                 translate: function(value) {
                     if (value < 1)
-                        return 'ทุกคะแนน'
+                        return 'ทุกคะแนน';
                     if (value < 10)
                         return '<b>' + value + '</b> คะแนนขึ้นไป';
                     if (value > 9)
@@ -341,9 +348,61 @@ app.controller('searchBarTop', [
         $scope.areaSelected = $scope.area[0];
         $scope.type = menuTypeRes;
         $scope.typeSelected = $scope.type[0];
+        $scope.service = {
+            value1: "",
+            value2: "",
+            value3: "",
+            value4: "",
+            value5: ""
+        };
 
         $scope.setSlider = function() {
             $timeout(function() {
+                $scope.$broadcast('rzSliderForceRender');
+            }, 400);
+        }
+
+        $scope.searchRestaurantNormal = function() {
+            var areaSearch = "";
+            if ($scope.areaSelected.id != "0") {
+                areaSearch = $scope.areaSelected.name;
+            }
+            $timeout(function() {
+                $location.url(
+                    '/search?area=' + areaSearch +
+                    '&keyword=' + $scope.keyword +
+                    '&minprice=' + $scope.price.minValue +
+                    '&maxprice=' + $scope.price.maxValue
+                );
+                $('#searchAdvance').modal('hide');
+                $scope.$broadcast('rzSliderForceRender');
+            }, 400);
+        }
+
+        $scope.searchRestaurantAdvance = function() {
+            var areaSearch = "";
+            var typeSearch = "";
+            if ($scope.areaSelected.id != "0") {
+                areaSearch = $scope.areaSelected.name;
+            }
+            if ($scope.typeSelected.id != "0") {
+                typeSearch = $scope.typeSelected.name;
+            }
+            $timeout(function() {
+                $location.url(
+                    '/search?area=' + areaSearch +
+                    '&keyword=' + $scope.keyword +
+                    '&type=' + typeSearch +
+                    '&minprice=' + $scope.price.minValue +
+                    '&maxprice=' + $scope.price.maxValue +
+                    '&score=' + $scope.score.value +
+                    '&service1=' + $scope.service.value1 +
+                    '&service2=' + $scope.service.value2 +
+                    '&service3=' + $scope.service.value3 +
+                    '&service4=' + $scope.service.value4 +
+                    '&service5=' + $scope.service.value5
+                );
+                $('#searchAdvance').modal('hide');
                 $scope.$broadcast('rzSliderForceRender');
             }, 400);
         }
