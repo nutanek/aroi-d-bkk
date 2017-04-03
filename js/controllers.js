@@ -1,4 +1,4 @@
-var app = angular.module('AroiDBkk', ['ngRoute', 'rzModule']);
+var app = angular.module('AroiDBkk', ['ngRoute', 'rzModule', 'ngSanitize']);
 
 app.run([
     '$location',
@@ -154,6 +154,7 @@ app.controller('showRestaurant', [
             $http.get("api/show-restaurant.php?id=" + $scope.idRes).then(function(response) {
                 $scope.restaurant = response.data.body;
                 $scope.totalScoreAvg = $scope.restaurant.score.totalAvg;
+                $scope.restaurant.content = $scope.restaurant.content.replace(/\n/g, '<br/>');
                 calScore();
                 console.log($scope.restaurant);
             });

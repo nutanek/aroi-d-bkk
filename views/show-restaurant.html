@@ -41,7 +41,7 @@
                     <div class="panel panel-success" style="border-radius: 0px;">
                         <div class="panel-heading" style="border-radius: 0px;"><i class="fa fa-home"></i> ข้อมูลร้าน</div>
                         <div class="panel-body">
-                            {{ restaurant.content }}
+                            <div ng-bind-html="restaurant.content"></div>
                         </div>
                     </div>
                     <div class="panel panel-warning" style="border-radius: 0px;">
