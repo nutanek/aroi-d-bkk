@@ -19,7 +19,7 @@
                 <div class="col-md-8">
                     <div class="col-xs-12 boxshadow">
                         <div class="row wrapimg" crop-img wrap-height="0.5" ng-style="wrapSize">
-                            <img class="img" ng-style="imgSize" ng-src="upload/{{ restaurant.img }}_full.jpg"/>
+                            <img class="img" ng-style="imgSize" ng-src="upload/{{ restaurant.img }}_full.jpg" />
                             <div class="title title_shadow hidden-xs">
                                 <h1 class="font-2">{{ restaurant.name }}</h1>
                                 <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ restaurant.area }}, กรุงเทพมหานคร</p>
@@ -31,23 +31,65 @@
                 <div class="col-md-4">
                     <div class="col-xs-12 boxshadow" ng-init="lat=13.76493;">
                         <div class="row wrapimg" crop-img wrap-height="1.04" ng-style="wrapSize">
-                            <img class="img" ng-style="imgSize" ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{ restaurant.map.lat }},{{ restaurant.map.lng }}&zoom=18&size=600x500&markers=color:red|icon:http://icons.iconarchive.com/icons/paomedia/small-n-flat/64/map-marker-icon.png|{{ restaurant.map.lat }},{{ restaurant.map.lng }}&key=AIzaSyCL_WJGAK__EjZPogQ6W5fFPhJfD-bI0PE"/>
+                            <img class="img" ng-style="imgSize" ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{ restaurant.map.lat }},{{ restaurant.map.lng }}&zoom=18&size=600x500&markers=color:red|icon:http://icons.iconarchive.com/icons/paomedia/small-n-flat/64/map-marker-icon.png|{{ restaurant.map.lat }},{{ restaurant.map.lng }}&key=AIzaSyCL_WJGAK__EjZPogQ6W5fFPhJfD-bI0PE"
+                            />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row resbody__wrapimg">
                 <div class="col-md-8">
-                    <div class="panel panel-success" style="border-radius: 0px;">
-                        <div class="panel-heading" style="border-radius: 0px;"><i class="fa fa-home"></i> ข้อมูลร้าน</div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="panel panel-default" style="border-radius: 0px;">
+                                <div class="panel-body">
+                                    <div class="row resbodyinfo__row">
+                                        <div class="col-xs-1 text-center">
+                                            <img src="imgs/phone.png">
+                                        </div>
+                                        <div class="col-md-11 col-xs-10">
+                                            {{ restaurant.tel }}
+                                        </div>
+                                    </div>
+                                    <div class="row resbodyinfo__row">
+                                        <div class="col-xs-1 text-center">
+                                            <img src="imgs/pin.png">
+                                        </div>
+                                        <div class="col-md-11 col-xs-10">
+                                            {{ restaurant.address }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-warning" style="border-radius: 0px; background: #FFCC00; height: 120px;">
+                                <div class="panel-body">
+                                    <div class="row resbodyinfo__row">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning" style="border-radius: 0px;">
+                        <div class="panel-heading" style="border-radius: 0px;"><i class="fa fa-home"></i> รายละเอียด</div>
                         <div class="panel-body">
                             <div ng-bind-html="restaurant.content"></div>
                         </div>
                     </div>
-                    <div class="panel panel-warning" style="border-radius: 0px;">
-                        <div class="panel-heading" style="border-radius: 0px;"><i class="fa fa-home"></i> ข้อมูลร้าน</div>
+
+                    <div class="panel panel-success" style="border-radius: 0px;">
+                        <div class="panel-heading" style="border-radius: 0px;"><i class="fa fa-home"></i> บริการเสริม</div>
                         <div class="panel-body">
-                            sss
+                            <div class="col-sm-4" ng-repeat="service in services" ng-if="restaurant.service[service.id]==1">
+                                <div class="row">
+                                    <div class="col-xs-12 resbodyinfo__row">
+                                        <img class="service_icon" ng-src="imgs/icon_service/{{ service.id }}.png"> {{ service.name }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,7 +118,7 @@
                                         </div>
                                     </div>
                                     <div class="progress">
-                                      <div class="progress-bar progress-bar-atm" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ restaurant.score.atm*10 }}%"></div>
+                                        <div class="progress-bar progress-bar-atm" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ restaurant.score.atm*10 }}%"></div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 text-left">
@@ -89,7 +131,7 @@
                                         </div>
                                     </div>
                                     <div class="progress">
-                                      <div class="progress-bar progress-bar-taste" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ restaurant.score.taste*10 }}%"></div>
+                                        <div class="progress-bar progress-bar-taste" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ restaurant.score.taste*10 }}%"></div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12">
@@ -102,7 +144,7 @@
                                         </div>
                                     </div>
                                     <div class="progress">
-                                      <div class="progress-bar progress-bar-service" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ restaurant.score.service*10 }}%"></div>
+                                        <div class="progress-bar progress-bar-service" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ restaurant.score.service*10 }}%"></div>
                                     </div>
                                 </div>
 
@@ -110,10 +152,17 @@
                                     <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#addScore" ng-click="resetScore();">ให้คะแนนร้านนี้</button>
                                 </div>
 
-
                             </div>
                         </div>
                     </div>
+
+                    <div class="panel panel-default" style="border-radius: 0px;">
+                        <div class="panel-body">
+                            <div id="fb-comment-box" dyn-fb-comment-box page-href="http://www.indytheme.com/AroiDBkk/{{ idRes }}" numposts="2" colorscheme="light">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -163,7 +212,6 @@
                 <div class="row text-center">
                     <button type="button" class="btn btn-success" ng-click="addScore(); refreshScore();"><i class="fa fa-check" aria-hidden="true"></i> บันทึกคะแนน</button>
                 </div>
-
             </div>
         </div>
     </div>

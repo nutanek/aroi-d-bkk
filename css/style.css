@@ -344,6 +344,15 @@ body {
     margin-bottom: 15px;
 }
 
+.resbodyinfo__row {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.resbodyinfo__row .service_icon {
+    margin-right: 10px;
+}
+
 /*----------------------------------- add score -----------------------------------*/
 #addScore .love {
     margin: 10px 0px 20px 0px;

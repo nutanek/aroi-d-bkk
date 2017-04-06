@@ -150,6 +150,13 @@ app.controller('showRestaurant', [
         $scope.scoreHover = [0, 0, 0];
         $scope.scoreClick = [0, 0, 0];
         $scope.alertScore = false;
+        $scope.services = [
+                { id: 1, name: "ที่จอดรถ"},
+                { id: 2, name: "Wi-Fi" },
+                { id: 3, name: "เครื่องปรับอากาศ" },
+                { id: 4, name: "ทีวี" },
+                { id: 5, name: "วงดนตรีสด" }
+        ];
         $timeout(function() {
             $http.get("api/show-restaurant.php?id=" + $scope.idRes).then(function(response) {
                 $scope.restaurant = response.data.body;
