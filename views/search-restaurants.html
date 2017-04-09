@@ -2,14 +2,14 @@
     <header-app search-bar=true></header-app>
     <div class="col-xs-12 resbody">
         <div class="container">
-            
+
             <div ng-repeat="res in foundRestaurants">
                 <section class="col-md-4 col-sm-6 bodycontent__item">
                     <div class="col-xs-12 bodycontent__img boxshadow">
                         <a href="#/restaurant/{{ res.id }}">
                             <span class="location">
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{ res.area }}
-                                </span>
+                                <i class="fa fa-map-marker" aria-hidden="true"></i> {{ res.area }}
+                            </span>
                             <div class="row wrapimg img-effect-2" crop-img wrap-height="0.5" ng-style="wrapSize">
                                 <img class="img" ng-style="imgSize" ng-src="upload/{{ res.img }}_thumb.jpg" />
                             </div>

@@ -7,7 +7,7 @@
 		$data = (array) $obj;
 
 
-		if (!isset($data['idRes']) || !isset($data['couponContent'] || !isset($data['couponCode']) ) {
+		if (!isset($data['idRes']) || !isset($data['couponContent']) || !isset($data['couponCode']) ) {
 			echo json_encode(array(
 				"status" => "error"
 			));
@@ -15,7 +15,7 @@
 		}
 
 		$sql = "insert into coupon (id_res, coupon_content, coupon_code)
-		                    values ('$data[idRes]', '$data[couponContent]', '$data[couponContent]')";
+		                    values ('$data[idRes]', '$data[couponContent]', '$data[couponCode]')";
 
 		if ($conn->query($sql) === TRUE) {
     		echo json_encode(array(

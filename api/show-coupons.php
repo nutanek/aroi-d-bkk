@@ -36,6 +36,8 @@
 					"type" => $row->type_res,
 					"area" => $row->area_res,
 					"couponContent" => $row->coupon_content,
+					"couponCode" => $row->coupon_code,
+					"img" => $row->img,
 					"timestamp" => $row->timestamp
 				));
 		    }

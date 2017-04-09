@@ -19,5 +19,25 @@ app.config(function($routeProvider) {
         title : "ค้นหาร้านอาหารในกรุงเทพ",
         controller: "showRestaurant",
         templateUrl : "views/show-restaurant.html"
+    })
+    .when("/add-coupon", {
+        title : "เพิ่มคูปองให้ร้านอาหารของคุณ",
+        controller: "addCoupon",
+        templateUrl : "views/add-coupon.html"
+    })
+    .when("/add-coupon/:id", {
+        title : "เพิ่มคูปองให้ร้านอาหารของคุณ",
+        controller: "addCoupon2",
+        templateUrl : "views/add-coupon2.html"
+    })
+    .when("/coupons", {
+        title : "คูปองทั้งหมด",
+        controller: "listCoupons",
+        templateUrl : "views/list-coupons.html"
+    })
+    .when("/coupon/:id", {
+        title : "คูปอง",
+        controller: "showCoupon",
+        templateUrl : "views/show-coupon.html"
     });
 });

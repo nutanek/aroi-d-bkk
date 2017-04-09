@@ -1,0 +1,70 @@
+<div class="container-fulid">
+    <header-app search-bar=true></header-app>
+    <div class="col-xs-12 resbody">
+        <div class="container">
+            <a ng-href="#/coupon/{{ coupon.id }}">
+                <div class="row listcoupon boxshadow" ng-repeat="coupon in coupons">
+                    <div class="col-xs-12" style="padding-left: 0px;">
+                        <div class="col-sm-3 hidden-xs">
+                            <div class="row wrapimg img-effect-2" crop-img wrap-height="0.6" ng-style="wrapSize">
+                                <img class="img" ng-style="imgSize" ng-src="upload/{{ coupon.img }}_thumb.jpg" />
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="col-xs-12 detail">
+                                <h3>{{ coupon.name }}</h3>
+                                <p class="area"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ coupon.area }}</p>
+                                <p>{{ coupon.couponContent }}</p>
+                            </div>
+                            <div class="col-xs-12">
+                                <a ng-href="#/coupon/{{ coupon.id }}" class="btn btn-xs btn-primary" role="button">ดูรายละเอียด</a>
+                                <a ng-href="#/restaurant/{{ coupon.id }}" target="_blank" class="btn btn-xs btn-warning" role="button">ดูข้อมูลร้าน</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            <div class="button-group">
+                                <div class="row">
+                                    <button type="button" class="btn btn-md btn-danger" data-toggle="modal" data-target="#getCoupon" ng-click="getCoupon(coupon.name, coupon.couponCode)"><i class="fa fa-gift" aria-hidden="true"></i> รับรหัสคูปอง</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div id="getCoupon" class="modal animated bounceInUp" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header" style="border: 0;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <h2>{{ resName }}</h2>
+                <p>รหัสคูปอง คือ</p>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="col-xs-12">
+                            <div class="code">
+                                <p class="animated flip"><b class="">{{ couponCode }}</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <hr>
+                <p><b>เงื่อนไขการใช้คูปอง:</b></p>
+                <ul>
+                    <li>กรุณาแสดงรหัสคูปองก่อนสั่งอาหาร</li>
+                    <li>คูปองนี้ไม่สามารถใช้ร่วมกับรายการส่งเสริมการขายอื่นๆ</li>
+                    <li>คูปองนี้ไม่สามารถแลกเปลี่ยนเป็นเงินสดได้</li>
+                    <li>ร้านค้าขอสงวนสิทธิ์ในการแก้ไขเปลี่ยนแปลงหรือยกเลิกข้อกำหนดและเงื่อนไข</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

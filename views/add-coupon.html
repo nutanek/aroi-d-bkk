@@ -1,0 +1,68 @@
+<div id="loader-wrapper" ng-show="loading">
+    <div id="loader"></div>
+    <div id="loader-bg"></div>
+</div>
+<div class="container-fulid">
+    <header-app search-bar=false></header-app>
+</div>
+<div class="container" style="margin-bottom: 30px;">
+    <div class="row blanktop--normal"></div>
+    <div class="row text-center">
+        <h1 class="font-2"><i class="fa fa-cutlery"></i> เพิ่มคูปอง</h1>
+    </div>
+    <div class="row">
+        <form name="addNewCoupon">
+            <div class="col-md-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading"><i class="fa fa-home"></i> ข้อมูลคูปอง</div>
+                    <div class="panel-body">
+                        <div class="form-group col-md-12">
+                            <label for="usr">ชื่อร้าน:</label>
+                            <input type="text" class="form-control input-lg" name="name" ng-model="name" placeholder="กรอกชื่อร้านของคุณ ที่ลงทะเบียนไว้แล้ว">
+                        </div>
+                        <div class="col-xs-12" ng-if="name==null||name==''">
+                            <ul class="list-group">
+                                <li class="list-group-item text-center">
+                                    <p>หากคุณยังไม่เคยเพิ่มข้อมูลร้าน กรุณาเพิ่มข้อมูลร้านก่อน</p>
+                                    <p>
+                                        <a href="#/add-restaurant" class="btn btn-lg btn-warning" role="button"><i class="glyphicon glyphicon-plus"></i> เพิ่มร้าน</a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12" ng-if="name!=null&&name!=''">
+                            <ul class="list-group" ng-show="filtered.length>0">
+                                <li class="list-group-item couponbody__list" ng-repeat="res in filtered = (restaurants | filter: {name: name})">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="col-sm-1 hidden-xs">
+                                                <div class="row wrapimg img-circle" crop-img wrap-height="1" ng-style="wrapSize">
+                                                    <img class="img" ng-style="imgSize" ng-src="upload/{{ res.img }}_thumb.jpg" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <h4>{{ res.name }}</h4>
+                                                <p class="area"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ res.area }}</p>
+                                            </div>
+                                            <div class="col-sm-2 text-right">
+                                                <a ng-href="#/add-coupon/{{ res.id }}" class="btn btn-sm btn-primary" role="button">เพิ่มคูปอง</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-group" ng-show="filtered.length==0">
+                                <li class="list-group-item text-center">
+                                    <p>ไม่พบร้านของคุณ, กรุณาเพิ่มร้านของคุณก่อน</p>
+                                    <p>
+                                        <a href="#/add-restaurant" class="btn btn-lg btn-warning" role="button"><i class="glyphicon glyphicon-plus"></i> เพิ่มร้าน</a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>

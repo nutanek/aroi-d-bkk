@@ -151,11 +151,22 @@ app.controller('showRestaurant', [
         $scope.scoreClick = [0, 0, 0];
         $scope.alertScore = false;
         $scope.services = [
-                { id: 1, name: "ที่จอดรถ"},
-                { id: 2, name: "Wi-Fi" },
-                { id: 3, name: "เครื่องปรับอากาศ" },
-                { id: 4, name: "ทีวี" },
-                { id: 5, name: "วงดนตรีสด" }
+            {
+                id: 1,
+                name: "ที่จอดรถ"
+            }, {
+                id: 2,
+                name: "Wi-Fi"
+            }, {
+                id: 3,
+                name: "เครื่องปรับอากาศ"
+            }, {
+                id: 4,
+                name: "ทีวี"
+            }, {
+                id: 5,
+                name: "วงดนตรีสด"
+            }
         ];
         $timeout(function() {
             $http.get("api/show-restaurant.php?id=" + $scope.idRes).then(function(response) {
@@ -342,7 +353,8 @@ app.controller('searchBarTop', [
                         return '<b>' + value + '</b> คะแนนขึ้นไป';
                     if (value > 9)
                         return '<b>' + value + '</b> คะแนน';
-                },
+                    }
+                ,
                 getTickColor: function(value) {
                     if (value < 3)
                         return '#FFC4C4';
@@ -382,12 +394,7 @@ app.controller('searchBarTop', [
                 areaSearch = $scope.areaSelected.name;
             }
             $timeout(function() {
-                $location.url(
-                    '/search?area=' + areaSearch +
-                    '&keyword=' + $scope.keyword +
-                    '&minprice=' + $scope.price.minValue +
-                    '&maxprice=' + $scope.price.maxValue
-                );
+                $location.url('/search?area=' + areaSearch + '&keyword=' + $scope.keyword + '&minprice=' + $scope.price.minValue + '&maxprice=' + $scope.price.maxValue);
                 $('#searchAdvance').modal('hide');
                 $scope.$broadcast('rzSliderForceRender');
             }, 400);
@@ -403,23 +410,143 @@ app.controller('searchBarTop', [
                 typeSearch = $scope.typeSelected.name;
             }
             $timeout(function() {
-                $location.url(
-                    '/search?area=' + areaSearch +
-                    '&keyword=' + $scope.keyword +
-                    '&type=' + typeSearch +
-                    '&minprice=' + $scope.price.minValue +
-                    '&maxprice=' + $scope.price.maxValue +
-                    '&score=' + $scope.score.value +
-                    '&service1=' + $scope.service.value1 +
-                    '&service2=' + $scope.service.value2 +
-                    '&service3=' + $scope.service.value3 +
-                    '&service4=' + $scope.service.value4 +
-                    '&service5=' + $scope.service.value5
-                );
+                $location.url('/search?area=' + areaSearch + '&keyword=' + $scope.keyword + '&type=' + typeSearch + '&minprice=' + $scope.price.minValue + '&maxprice=' + $scope.price.maxValue + '&score=' + $scope.score.value + '&service1=' + $scope.service.value1 + '&service2=' + $scope.service.value2 + '&service3=' + $scope.service.value3 + '&service4=' + $scope.service.value4 + '&service5=' + $scope.service.value5);
                 $('#searchAdvance').modal('hide');
                 $scope.$broadcast('rzSliderForceRender');
             }, 400);
         }
 
+    }
+]);
+
+app.controller('addCoupon', [
+    '$scope',
+    '$timeout',
+    '$http',
+    '$routeParams',
+    '$location',
+    function($scope, $timeout, $http, $routeParams, $location) {
+        $timeout(function() {
+            $http.get("api/list-restaurants.php").then(function(response) {
+                $scope.restaurants = response.data.body;
+                console.log($scope.restaurants);
+            });
+        });
+
+    }
+]);
+
+app.controller('addCoupon2', [
+    '$scope',
+    '$timeout',
+    '$http',
+    '$routeParams',
+    '$location',
+    '$rootScope',
+    function($scope, $timeout, $http, $routeParams, $location, $rootScope) {
+        $timeout(function() {
+            $http.get("api/show-restaurant.php?id=" + $routeParams.id).then(function(response) {
+                $scope.restaurant = response.data.body;
+                console.log($scope.restaurant);
+            });
+        });
+
+        $scope.couponCode = "";
+        $scope.couponDetail = "";
+        $rootScope.loading = false;
+
+        $scope.getCouponCode = function() {
+            var length = 7;
+            var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var retVal = "";
+            for (var i = 0, n = charset.length; i < length; ++i) {
+                retVal += charset.charAt(Math.floor(Math.random() * n));
+            }
+            $scope.couponCode = retVal.toString();
+        }
+
+        $scope.sendForm = function() {
+            $timeout(function() {
+                if ($scope.couponCode == "" || $scope.couponDetail == "") {
+                    $timeout(function() {
+                        $('#warningAddCoupon').modal('show');
+                    });
+                } else {
+                    $rootScope.loading = true;
+                    let req = {
+                        method: 'POST',
+                        url: 'api/add-coupon.php',
+                        headers: {
+                            'Content-Type': "application/json"
+                        },
+                        data: {
+                            idRes: $routeParams.id,
+                            couponCode: $scope.couponCode,
+                            couponContent: $scope.couponDetail
+                        }
+                    }
+                    $http(req).then(function(response) {
+                        console.log(response.data);
+
+                        if (response.data.status === "success") {
+                            $timeout(function() {
+                                $('#successAddCoupon').modal('show');
+                            });
+                            $rootScope.loading = false;
+                        } else {
+                            $timeout(function() {
+                                $('#warningAddCoupon2').modal('show');
+                            });
+                            $rootScope.loading = false;
+                        }
+                    }, function(data) {
+                        $timeout(function() {
+                            $('#warningAddCoupon').modal('show');
+                        });
+                        $rootScope.loading = false;
+                    });
+                }
+            });
+        }
+    }
+]);
+
+app.controller('listCoupons', [
+    '$scope',
+    '$timeout',
+    '$http',
+    function($scope, $timeout, $http, $location) {
+        $timeout(function() {
+            $http.get("api/show-coupons.php?num=0").then(function(response) {
+                $scope.coupons = response.data.body;
+                console.log($scope.coupons);
+            });
+        });
+
+        $scope.getCoupon = function(name, code) {
+            $scope.resName = name;
+            $scope.couponCode = code;
+        }
+    }
+]);
+
+app.controller('showCoupon', [
+    '$scope',
+    '$timeout',
+    '$http',
+    '$routeParams',
+    function($scope, $timeout, $http, $routeParams) {
+        $timeout(function() {
+            $http.get("api/show-coupon.php?id=" + $routeParams.id).then(function(response) {
+                $scope.coupon = response.data.body;
+                $scope.coupon.couponContent = $scope.coupon.couponContent.replace(/\n/g, '<br/>');
+                console.log($scope.coupon);
+            });
+        });
+
+        $scope.getCoupon = function(name, code) {
+            $scope.resName = name;
+            $scope.couponCode = code;
+        }
     }
 ]);

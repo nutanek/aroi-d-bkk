@@ -369,3 +369,66 @@ body {
 #addScore .score {
     margin-bottom: 15px;
 }
+
+/*----------------------------------- add coupon -----------------------------------*/
+.couponbody__list:hover {
+    background: #f7f7f7;
+}
+
+.couponbody__list .area {
+    color: #888888;
+}
+
+.couponbody__wraprow {
+    padding-top: 20px;
+}
+
+.couponbody__wraprow .input-group,
+.couponbody__wraprow .form-group {
+    margin-bottom: 20px;
+}
+
+/*----------------------------------- list coupon -----------------------------------*/
+.listcoupon {
+    margin-top: 15px;
+    background: #FFF;
+}
+
+.listcoupon:hover {
+    background: #fafafa;
+}
+
+.listcoupon .area {
+    color: #888888;
+}
+
+.listcoupon .button-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.listcoupon .button-group .btn {
+    margin-top: 5px;
+}
+
+.listcoupon .detail {
+    color: #000000;
+}
+
+#getCoupon .code {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 35px;
+    color: #e74c3c;
+    border: 1px dashed #e74c3c;
+}
+
+/*----------------------------------- show coupon -----------------------------------*/
+.showcoupon {
+
+}
+
+.showcoupon .type {
+    color: #888888;
+}

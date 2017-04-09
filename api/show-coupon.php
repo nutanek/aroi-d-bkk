@@ -25,7 +25,9 @@
 					"type" => $row->type_res,
 					"address" => $row->address_res,
 					"area" => $row->area_res,
+					"tel" => $row->tel,
 					"couponContent" => $row->coupon_content,
+					"img" => $row->img,
 					"couponCode" => $row->coupon_code
 				);
 		    }
