@@ -48,6 +48,20 @@ app.controller('homePage', [
                 $location.url('/search?area=' + areaSearch + '&keyword=' + $scope.resKeyword);
             });
         }
+
+        $scope.getCurrentLocation = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(nearMeSearch);
+            } else {
+                //x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        var nearMeSearch = function(position) {
+            $timeout(function() {
+                $location.url('/search?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + "&distance=5");
+            });
+        }
     }
 ]);
 
@@ -273,6 +287,10 @@ app.controller('searchRestaurant', [
         var service3 = filterSearch(qs['service3']);
         var service4 = filterSearch(qs['service4']);
         var service5 = filterSearch(qs['service5']);
+        // Searched by maps
+        var lat = filterSearch(qs['lat']);
+        var lng = filterSearch(qs['lng']);
+        var distance = filterSearch(qs['distance']);
 
         console.log(area, keyword);
 
@@ -293,7 +311,10 @@ app.controller('searchRestaurant', [
                 service2: service2,
                 service3: service3,
                 service4: service4,
-                service5: service5
+                service5: service5,
+                lat: lat,
+                lng: lng,
+                distance: distance
             }
         }
         $http(req).then(function(response) {
@@ -414,6 +435,26 @@ app.controller('searchBarTop', [
                 $('#searchAdvance').modal('hide');
                 $scope.$broadcast('rzSliderForceRender');
             }, 400);
+        }
+
+        $scope.goToMaps = function() {
+            $timeout(function() {
+                $location.url('/maps');
+            }, 200);
+        }
+
+        $scope.getCurrentLocation = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(nearMeSearch);
+            } else {
+                //x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        var nearMeSearch = function(position) {
+            $timeout(function() {
+                $location.url('/search?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + "&distance=5");
+            });
         }
 
     }
@@ -539,6 +580,7 @@ app.controller('showCoupon', [
         $timeout(function() {
             $http.get("api/show-coupon.php?id=" + $routeParams.id).then(function(response) {
                 $scope.coupon = response.data.body;
+                // $scope.resName = coupon.name;
                 $scope.coupon.couponContent = $scope.coupon.couponContent.replace(/\n/g, '<br/>');
                 console.log($scope.coupon);
             });
@@ -547,6 +589,20 @@ app.controller('showCoupon', [
         $scope.getCoupon = function(name, code) {
             $scope.resName = name;
             $scope.couponCode = code;
+        }
+    }
+]);
+
+app.controller('searchByMap', [
+    '$scope',
+    '$timeout',
+    '$http',
+    '$location',
+    function($scope, $timeout, $http, $location) {
+        $scope.searchRestaurantByMap = function() {
+            $timeout(function() {
+                $location.url('/search?lat=' + $scope.mapLat + '&lng=' + $scope.mapLon + '&distance=5');
+            }, 200);
         }
     }
 ]);

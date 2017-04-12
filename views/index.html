@@ -8,15 +8,17 @@
                     </a>
                 </div>
                 <div class="col-md-8 text-right">
-                    <a href="#" class="btn btn-sm btn-primary" role="button">
-                        <i class="glyphicon glyphicon-star"></i> ร้านอาหารมาใหม่
+                    <a class="btn btn-sm btn-danger" role="button" ng-click="getCurrentLocation()">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; ร้านอาหารใกล้ตัว
                     </a>
-                    <a href="#" class="btn btn-sm btn-danger" role="button">
-                        <i class="glyphicon glyphicon-heart"></i> คะแนนสูงสุด
+                    <a href="#/coupons" class="btn btn-sm btn-warning" role="button">
+                        <i class="fa fa-gift" aria-hidden="true"></i>&nbsp; คูปอง
                     </a>
-                    <a href="#" class="btn btn-sm btn-warning" role="button">
-                            ติดต่อเรา
-                        </a>
+                </div>
+            </div>
+            <div class="row headertopic text-center">
+                <div class="col-xs-12">
+                    <img class="img-responsive" src="imgs/logo.png" style="margin: 0 auto;">
                 </div>
             </div>
             <div class="row headertopic text-center">
@@ -45,6 +47,10 @@
                         <button type="button" class="btn btn-block btn-lg btn-default" ng-click="searchRestaurant()">ค้นหา</button>
                     </div>
                     <div class="col-md-2"></div>
+                    <div class="col-xs-12 extension text-center">
+                        <a href="#/advance"><i class="fa fa-search-plus" aria-hidden="true"></i> ค้นแบบละเอียด</a>|
+                        <a href="#/maps"><i class="fa fa-map-o" aria-hidden="true"></i> ค้นจากแผนที่</a>
+                    </div>
                 </form>
             </div>
         </div>

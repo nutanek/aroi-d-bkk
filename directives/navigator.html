@@ -1,3 +1,16 @@
-<p>
-    sssss
-</p>
+<div class="row navigator">
+    <div class="col-xs-12">
+        <a href="#/">หน้าแรก</a>
+        <span class="active" ng-if="titleLevel1!=null && urlLevel1!=null">
+            » <a ng-href="{{ urlLevel1 }}">{{ titleLevel1 }}</a>
+        </span>
+
+        <span class="nonactive" ng-if="titleLevel1!=null && urlLevel1==null">
+            » {{ titleLevel1 }}
+        </span>
+
+        <span class="nonactive" ng-if="titleLevel2!=null">
+            » {{ titleLevel2 }}
+        </span>
+    </div>
+</div>

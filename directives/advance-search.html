@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>คำค้นหา:</label>
+                <input type="text" class="form-control" ng-model="keyword" placeholder="ชื่อร้าน, ชื่ออาหาร">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>ประเภท:</label>
+                <select class="form-control" ng-model="typeSelected" ng-options="item.name for item in type"></select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>เขต (ในกรุงเทพ):</label>
+                <select class="form-control" ng-model="areaSelected" ng-options="item.name for item in area"></select>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>ราคา (ต่อคน):</label>
+                <rzslider rz-slider-model="price.minValue" rz-slider-high="price.maxValue" rz-slider-options="price.options"></rzslider>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>คะแนนรวม:</label>
+                <rzslider rz-slider-model="score.value" rz-slider-options="score.options"></rzslider>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>บริการเสริม:</label>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="service.value1" ng-true-value="1" ng-false-value="">ที่จอดรถ</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="service.value2" ng-true-value="1" ng-false-value="">Wi-fi</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="service.value3" ng-true-value="1" ng-false-value="">เครื่องปรับอาการ</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="service.value4" ng-true-value="1" ng-false-value="">ทีวี</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="service.value5" ng-true-value="1" ng-false-value="">วงดนตรีสด</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

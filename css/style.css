@@ -81,6 +81,21 @@ body {
     z-index: 9999;
 }
 
+.navigator {
+    margin-bottom: 10px;
+}
+
+.navigator,
+.navigator a,
+.navigator .active a {
+    color: #666666;
+    font-size: 10pt;
+}
+
+.navigator .nonactive {
+    color: #999999;
+    font-size: 10pt;
+}
 /*--------------------- Dropdown Type --------------------*/
 
 .dropdown-keyword {
@@ -108,6 +123,18 @@ body {
 
 .headerselector .dropdown-menu {
     padding: 0;
+}
+
+.headerselector .extension,
+.headerselector .extension a {
+    margin: 0 15px;
+    color: #FFFFFF;
+    text-shadow: 0px 0px 5px #000000;
+    text-decoration: none;
+}
+
+.headerselector .extension a:hover {
+    color: #FFCC00;
 }
 
 /************ WRAP IMG ************/
@@ -161,6 +188,20 @@ body {
 .headerselector {
   padding-top: 20px;
   padding-bottom: 30px;
+}
+
+.restophead .logo {
+    height: 60px;
+    margin-top: 10px;
+}
+
+.ressearchbar--scroll .logo {
+    height: 40px;
+    margin-top: -5px;
+}
+
+.restophead .buttongroup {
+    margin-top: 25px;
 }
 
 /************ BODY ************/
@@ -217,6 +258,18 @@ body {
   padding: 2px 8px;
   border-radius: 5px;
   background: #FF6633;
+  color: #FFFFFF;
+  opacity: 0.85;
+  z-index: 99;
+}
+
+.bodycontent__img .distance {
+  position: absolute;
+  top: 34px;
+  right: 5px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: #ffb000;
   color: #FFFFFF;
   opacity: 0.85;
   z-index: 99;
@@ -431,4 +484,20 @@ body {
 
 .showcoupon .type {
     color: #888888;
+}
+
+/*----------------------------------- search by maps -----------------------------------*/
+.searchmap .maps {
+    height: 400px;
+}
+
+.searchmap .searchlocation {
+    position: absolute;
+    top: 70px;
+    right: 50px;
+    z-index: 9999;
+}
+
+.searchmap .latlng {
+    display: none;
 }

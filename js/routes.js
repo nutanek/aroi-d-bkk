@@ -39,5 +39,15 @@ app.config(function($routeProvider) {
         title : "คูปอง",
         controller: "showCoupon",
         templateUrl : "views/show-coupon.html"
+    })
+    .when("/maps", {
+        title : "ค้นหาโดยใช้แผนที่",
+        controller: "searchByMap",
+        templateUrl : "views/search-map.html"
+    })
+    .when("/advance", {
+        title : "ค้นหาแบบละเอียด",
+        controller: "searchBarTop",
+        templateUrl : "views/advance-search.html"
     });
 });

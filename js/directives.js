@@ -9,6 +9,13 @@ app.directive('headerApp', function() {
     };
 });
 
+app.directive('advanceSearch', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'directives/advance-search.html'
+    };
+});
+
 app.directive('ngEnter', function() {
     return function(scope, element, attrs) {
         element.bind("keydown keypress", function(event) {
@@ -134,10 +141,13 @@ app.directive('cropWrapper', function($window) {
 app.directive("scrollShowSearch", function($window) {
     return function(scope, element, attrs) {
         scope.showSearchBar = 'hidden';
+        scope.boxPrice = "";
         angular.element($window).bind("scroll", function() {
             if (this.pageYOffset >= 80) {
+                scope.boxPrice = "";
                 scope.showSearchBar = 'none';
             } else {
+                scope.boxPrice = "none";
                 scope.showSearchBar = 'hidden';
             }
             scope.$apply();
@@ -201,23 +211,18 @@ app.directive("numberCounter", function() {
     };
 });
 
-app.directive('dynFbCommentBox', function () {
+app.directive('dynFbCommentBox', function() {
     function createHTML(href, numposts, colorscheme) {
-        return '<div class="fb-comments" ' +
-                       'data-href="' + href + '" ' +
-                       'data-numposts="' + numposts + '" ' +
-                       'data-width="100%" ' +
-                       'data-colorsheme="' + colorscheme + '">' +
-               '</div>';
+        return '<div class="fb-comments" ' + 'data-href="' + href + '" ' + 'data-numposts="' + numposts + '" ' + 'data-width="100%" ' + 'data-colorsheme="' + colorscheme + '">' + '</div>';
     }
 
     return {
         restrict: 'A',
         scope: {},
         link: function postLink(scope, elem, attrs) {
-            attrs.$observe('pageHref', function (newValue) {
-                var href        = newValue;
-                var numposts    = attrs.numposts    || 5;
+            attrs.$observe('pageHref', function(newValue) {
+                var href = newValue;
+                var numposts = attrs.numposts || 5;
                 var colorscheme = attrs.colorscheme || 'light';
 
                 elem.html(createHTML(href, numposts, colorscheme));
@@ -228,13 +233,39 @@ app.directive('dynFbCommentBox', function () {
 });
 
 app.directive("limitTo", [function() {
-    return {
-        restrict: "A",
-        link: function(scope, elem, attrs) {
-            var limit = parseInt(attrs.limitTo);
-            angular.element(elem).on("keypress", function(e) {
-                if (this.value.length == limit) e.preventDefault();
-            });
+        return {
+            restrict: "A",
+            link: function(scope, elem, attrs) {
+                var limit = parseInt(attrs.limitTo);
+                angular.element(elem).on("keypress", function(e) {
+                    if (this.value.length == limit)
+                        e.preventDefault();
+                    }
+                );
+            }
         }
     }
-}]);
+]);
+
+app.directive("navigator", [function() {
+        return {
+            restrict: 'E',
+            link: function(scope, elem, attrs) {
+                scope.urlLevel1 = attrs.urlLevel1;
+                scope.titleLevel1 = attrs.titleLevel1;
+                scope.titleLevel2 = attrs.titleLevel2;
+
+                scope.$watchGroup([
+                    'coupon.name',
+                    'restaurant.name'
+                ], function(newVal) {
+                    if (newVal) {
+                        scope.titleLevel2 = attrs.titleLevel2;
+                    }
+                });
+
+            },
+            templateUrl: 'directives/navigator.html'
+        }
+    }
+]);

@@ -1,0 +1,49 @@
+<div class="container-fulid">
+    <header-app search-bar=false></header-app>
+</div>
+<div class="container" style="margin-bottom: 30px;">
+    <div class="row blanktop--normal"></div>
+    <navigator title-level1="ค้นหาจากแผนที่"></navigator>
+    <div class="row text-center">
+        <h1 class="font-2"><i class="fa fa-map" aria-hidden="true"></i> ค้นหาจากแผนที่</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><i class="fa fa-map-marker" aria-hidden="true"></i> เลือกตำแหน่งบนแผนที่</div>
+                <div class="panel-body searchmap">
+                    <div class="col-xs-12" id="map" style="height: 400px;"></div>
+                    <div class="searchlocation form-inline hidden-sm hidden-xs">
+                        <div class="form-group">
+                            <input type="text" id="address" class="form-control" placeholder="ค้นหาที่ตั้ง">
+                        </div>
+                        <div class="form-group">
+                            <button id="submit" type="button" class="btn btn-block btn-info">ค้นหา</button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 latlng">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="usr">ละติจูด:</label>
+                                        <input type="text" class="form-control" name="mapLat" ng-model="mapLat" readonly>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="usr">ลองจิจูด:</label>
+                                        <input type="text" class="form-control" name="mapLon" ng-model="mapLon" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 text-center" style="margin-top: 20px">
+                        <button type="button" class="btn btn-primary" ng-click="searchRestaurantByMap()"><i class="fa fa-search" aria-hidden="true"></i> ค้นหาร้าน</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6gFvIgL4dUvIr48Yt1Uo4qJ8KI-6tO4M&callback=searchByMap"></script>

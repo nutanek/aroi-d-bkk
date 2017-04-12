@@ -2,6 +2,10 @@
     <header-app search-bar=true></header-app>
     <div class="col-xs-12 resbody">
         <div class="container" ng-if="restaurant.length!=0">
+            <navigator
+                title-level1="ร้านอาหาร"
+                url-level1="#/search"
+                title-level2="{{restaurant.name}}"></navigator>
             <div class="row resbody__wrapheader visible-xs">
                 <div class="col-md-8">
                     <div>

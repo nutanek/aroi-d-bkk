@@ -12,7 +12,7 @@
 			));
 			exit();
 		}
-		$dist =$_GET['num']*0.62137;
+		$dist = $_GET['distance']*0.62137;
 		$restaurants = array();
 
 

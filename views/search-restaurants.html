@@ -2,13 +2,16 @@
     <header-app search-bar=true></header-app>
     <div class="col-xs-12 resbody">
         <div class="container">
-
+            <navigator title-level1="ร้านอาหาร"></navigator>
             <div ng-repeat="res in foundRestaurants">
                 <section class="col-md-4 col-sm-6 bodycontent__item">
                     <div class="col-xs-12 bodycontent__img boxshadow">
                         <a href="#/restaurant/{{ res.id }}">
                             <span class="location">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i> {{ res.area }}
+                            </span>
+                            <span class="distance" ng-if="res.distance!=null">
+                                {{ res.distance }} km.
                             </span>
                             <div class="row wrapimg img-effect-2" crop-img wrap-height="0.5" ng-style="wrapSize">
                                 <img class="img" ng-style="imgSize" ng-src="upload/{{ res.img }}_thumb.jpg" />
@@ -26,8 +29,8 @@
                                     <div class="price">
                                         ฿ {{ res.price.min }}-{{ res.price.max }}
                                     </div>
-                                    <div class="score" ng-if="res.score>0">
-                                        <i class="fa fa-heart" aria-hidden="true"></i> <b>{{ res.score }}</b>
+                                    <div class="score" ng-if="res.scoreTotal>0">
+                                        <i class="fa fa-heart" aria-hidden="true"></i> <b>{{ res.scoreTotal }}</b>
                                     </div>
                                 </div>
                             </div>
