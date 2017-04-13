@@ -24,13 +24,13 @@ app.controller('homePage', [
         $scope.resKeyword = "";
 
         $timeout(function() {
-            $http.get("api/show-new-restaurants.php?num=0").then(function(response) {
+            $http.get("api/show-new-restaurants.php?num=6").then(function(response) {
                 $scope.newRestaurants = response.data.body;
                 console.log($scope.newRestaurants);
             });
         });
         $timeout(function() {
-            $http.get("api/show-best-score-restaurants.php?num=0").then(function(response) {
+            $http.get("api/show-best-score-restaurants.php?num=6").then(function(response) {
                 $scope.bestScoreRestaurants = response.data.body;
             });
         });

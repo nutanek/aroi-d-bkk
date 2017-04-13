@@ -1,42 +1,144 @@
 /*----------- loading 3 colors animation -----------*/
-#loader-wrapper{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1000;}
-#loader-bg{opacity: 0.7;position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;background:#eceff1;}
-#loader{display:block;position:relative;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:3px solid transparent;border-top-color:#3498db;-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite;z-index:1001}
-#loader:before{content:"";position:absolute;top:5px;left:5px;right:5px;bottom:5px;border-radius:50%;border:3px solid transparent;border-top-color:#e74c3c;-webkit-animation:spin 3s linear infinite;animation:spin 3s linear infinite}
-#loader:after{content:"";position:absolute;top:15px;left:15px;right:15px;bottom:15px;border-radius:50%;border:3px solid transparent;border-top-color:#f9c922;-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}
-@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}
-.no-js #loader-wrapper{display:none}
+
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+#loader-bg {
+    opacity: 0.7;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: #eceff1;
+}
+
+#loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    z-index: 1001
+}
+
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #e74c3c;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite
+}
+
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #f9c922;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+.no-js #loader-wrapper {
+    display: none
+}
+
 
 /*-------------- loading page ----------------*/
+
 .loader-line {
-  height: 3px;
-  width: 100%;
-  position: fixed;
-  overflow: hidden;
-  background-color: #ddd;
-  z-index: 99999;
+    height: 3px;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+    background-color: #ddd;
+    z-index: 99999;
 }
-.loader-line:before{
-  display: block;
-  position: fixed;
-  content: "";
-  left: -200px;
-  width: 200px;
-  height: 3px;
-  background-color: #e74c3c;
-  animation: loading-line 1s linear infinite;
-  z-index: 9999999;
+
+.loader-line:before {
+    display: block;
+    position: fixed;
+    content: "";
+    left: -200px;
+    width: 200px;
+    height: 3px;
+    background-color: #e74c3c;
+    animation: loading-line 1s linear infinite;
+    z-index: 9999999;
 }
 
 @keyframes loading-line {
-    from {left: -200px; width: 30%;}
-    50% {width: 30%;}
-    70% {width: 70%;}
-    80% { left: 50%;}
-    95% {left: 120%;}
-    to {left: 100%;}
+    from {
+        left: -200px;
+        width: 30%;
+    }
+    50% {
+        width: 30%;
+    }
+    70% {
+        width: 70%;
+    }
+    80% {
+        left: 50%;
+    }
+    95% {
+        left: 120%;
+    }
+    to {
+        left: 100%;
+    }
 }
-
 
 @font-face {
     font-family: thaisanslite-font;
@@ -45,6 +147,7 @@
     font-weight: 400;
     font-style: normal
 }
+
 @font-face {
     font-family: supermarket-font;
     src: url(../fonts/supermarket-webfont.eot);
@@ -52,20 +155,23 @@
     font-weight: 400;
     font-style: normal
 }
+
 .font-1 {
     font-family: supermarket-font
 }
+
 .font-2 {
     font-family: thaisanslite-font
 }
 
 body {
-  background: #F5F6F7;
+    background: #F5F6F7;
 }
 
 .blanktop {
     margin-top: 150px;
 }
+
 .blanktop--normal {
     margin-top: 100px;
 }
@@ -77,6 +183,7 @@ body {
 .modal {
     z-index: 99999;
 }
+
 .modal-backdrop {
     z-index: 9999;
 }
@@ -85,9 +192,7 @@ body {
     margin-bottom: 10px;
 }
 
-.navigator,
-.navigator a,
-.navigator .active a {
+.navigator, .navigator a, .navigator .active a {
     color: #666666;
     font-size: 10pt;
 }
@@ -96,6 +201,7 @@ body {
     color: #999999;
     font-size: 10pt;
 }
+
 /*--------------------- Dropdown Type --------------------*/
 
 .dropdown-keyword {
@@ -125,8 +231,7 @@ body {
     padding: 0;
 }
 
-.headerselector .extension,
-.headerselector .extension a {
+.headerselector .extension, .headerselector .extension a {
     margin: 0 15px;
     color: #FFFFFF;
     text-shadow: 0px 0px 5px #000000;
@@ -137,12 +242,15 @@ body {
     color: #FFCC00;
 }
 
+
 /************ WRAP IMG ************/
+
 .wrapimg {
     position: relative;
     overflow: hidden;
     padding: 0
 }
+
 .wrapimg img {
     -webkit-transition: all .3s ease-out;
     -moz-transition: all .3s ease-out;
@@ -160,34 +268,68 @@ body {
     transform: rotate(5deg) scale(1.2)
 }
 
+.img-effect-3:after {
+    content: '\A';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    opacity: 0;
+    transition: all .3s;
+    -webkit-transition: all .3s
+}
+
+.img-effect-3:hover:after {
+    opacity: 1
+}
+
+.img-effect-3:hover img {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2)
+}
+
+.icon-hover {
+    position: absolute;
+    font-size: 26pt;
+    color: #FFF;
+    z-index: 999;
+    display: none
+}
+
 
 /************ HEADER ************/
+
 .headerwrap {
-  background: #AAAAAA url("../imgs/bg-header.jpg") top center;
+    background: #AAAAAA url("../imgs/bg-header.jpg") top center;
 }
 
 .headerwrap label {
-  color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .headermenu {
-  padding-top: 20px;
-  padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .headertopic {
-  padding-top: 5px;
-  padding-bottom: 10px;
-  color: #FFFFFF;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
 }
 
 .headertopic h1 {
-  font-size: 32pt;
+    font-size: 32pt;
 }
 
 .headerselector {
-  padding-top: 20px;
-  padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 
 .restophead .logo {
@@ -204,106 +346,109 @@ body {
     margin-top: 25px;
 }
 
+
 /************ BODY ************/
+
 .bodywrap {
-  padding-top: 30px;
-  padding-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
-.bodytopic {
-}
+.bodytopic {}
 
 .bodytopic__text {
-  padding: 8px 15px;
-  font-size: 18pt;
-  float: left
+    padding: 8px 15px;
+    font-size: 18pt;
+    float: left
 }
 
 .bodytopic__text--new {
-  background: #177BCC;
-  color: #FFFFFF;
+    background: #177BCC;
+    color: #FFFFFF;
 }
 
 .bodytopic__arrow {
-  width: 0;
-	height: 0;
-	border-bottom: 20px solid #003F90;
-	border-right: 15px solid transparent;
-  float: left
+    width: 0;
+    height: 0;
+    border-bottom: 20px solid #003F90;
+    border-right: 15px solid transparent;
+    float: left
 }
+
 .bodytopic__more {
-  margin-top: 20px;
-  float: right;
+    margin-top: 20px;
+    float: right;
 }
 
 .bodycontent {
-  padding-top: 20px;
-  padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 
 .bodycontent__item {
-  margin-top: 5px;
-  margin-bottom: 20px;
-
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
 
 .bodycontent__img {
-  position: relative;
+    position: relative;
 }
 
 .bodycontent__img .location {
-  position: absolute;
-  top: 6px;
-  right: 5px;
-  padding: 2px 8px;
-  border-radius: 5px;
-  background: #FF6633;
-  color: #FFFFFF;
-  opacity: 0.85;
-  z-index: 99;
+    position: absolute;
+    top: 6px;
+    right: 5px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: #FF6633;
+    color: #FFFFFF;
+    opacity: 0.85;
+    z-index: 99;
 }
 
 .bodycontent__img .distance {
-  position: absolute;
-  top: 34px;
-  right: 5px;
-  padding: 2px 8px;
-  border-radius: 5px;
-  background: #ffb000;
-  color: #FFFFFF;
-  opacity: 0.85;
-  z-index: 99;
+    position: absolute;
+    top: 34px;
+    right: 5px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: #ffb000;
+    color: #FFFFFF;
+    opacity: 0.85;
+    z-index: 99;
 }
 
 .bodycontent__detail {
-  padding-top: 5px;
-  padding-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .bodycontent__detail .wrap {
-    background:#FFFFFF;
+    background: #FFFFFF;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
 .bodycontent__detail .name {
-  padding-top: 5px;
-  font-size: 14pt;
+    padding-top: 5px;
+    font-size: 14pt;
 }
 
 .bodycontent__detail .price {
-  float: left;
+    float: left;
 }
 
 .bodycontent__detail .score {
-  color: #FF3333;
-  float: right;
+    color: #FF3333;
+    float: right;
 }
 
+
 /*----------------------------------- Restaurants -----------------------------------*/
+
 .restophead {
-  height: 80px;
-  background: #25282E;
+    height: 80px;
+    background: #25282E;
 }
 
 .ressearchbar {
@@ -342,9 +487,9 @@ body {
 }
 
 .resbody__wrapimg .title {
-  padding: 50px 20px 20px 20px;
-  color: #FFFFFF;
-  text-decoration: none;
+    padding: 50px 20px 20px 20px;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .resbody__wrapimg .title h1 {
@@ -353,20 +498,20 @@ body {
 }
 
 .resbody__wrapimg .title a {
-  color: #FFFFFF;
-  text-decoration: none;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .title_shadow {
-  position: absolute;
-  bottom: 0;
-  margin: 0;
-  width: 100%;
-  color: #FFFFFF;
-  background: -webkit-linear-gradient(rgba(0, 0, 0, 0), #000000);
-  background: -o-linear-gradient(rgba(0, 0, 0, 0), #000000);
-  background: -moz-linear-gradient(rgba(0, 0, 0, 0), #000000);
-  background: linear-gradient(rgba(0, 0, 0, 0), #000000);
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    color: #FFFFFF;
+    background: -webkit-linear-gradient(rgba(0, 0, 0, 0), #000000);
+    background: -o-linear-gradient(rgba(0, 0, 0, 0), #000000);
+    background: -moz-linear-gradient(rgba(0, 0, 0, 0), #000000);
+    background: linear-gradient(rgba(0, 0, 0, 0), #000000);
 }
 
 .resbodyscore h1 {
@@ -406,7 +551,9 @@ body {
     margin-right: 10px;
 }
 
+
 /*----------------------------------- add score -----------------------------------*/
+
 #addScore .love {
     margin: 10px 0px 20px 0px;
     font-size: 20pt;
@@ -423,7 +570,9 @@ body {
     margin-bottom: 15px;
 }
 
+
 /*----------------------------------- add coupon -----------------------------------*/
+
 .couponbody__list:hover {
     background: #f7f7f7;
 }
@@ -436,12 +585,13 @@ body {
     padding-top: 20px;
 }
 
-.couponbody__wraprow .input-group,
-.couponbody__wraprow .form-group {
+.couponbody__wraprow .input-group, .couponbody__wraprow .form-group {
     margin-bottom: 20px;
 }
 
+
 /*----------------------------------- list coupon -----------------------------------*/
+
 .listcoupon {
     margin-top: 15px;
     background: #FFF;
@@ -459,6 +609,7 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 .listcoupon .button-group .btn {
     margin-top: 5px;
 }
@@ -477,16 +628,18 @@ body {
     border: 1px dashed #e74c3c;
 }
 
-/*----------------------------------- show coupon -----------------------------------*/
-.showcoupon {
 
-}
+/*----------------------------------- show coupon -----------------------------------*/
+
+.showcoupon {}
 
 .showcoupon .type {
     color: #888888;
 }
 
+
 /*----------------------------------- search by maps -----------------------------------*/
+
 .searchmap .maps {
     height: 400px;
 }
