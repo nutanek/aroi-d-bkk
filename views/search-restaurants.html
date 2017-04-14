@@ -41,6 +41,18 @@
                 <div ng-show="($index%2)==1" class="visible-sm col-sm-12"></div>
             </div>
 
+            <div class="row text-center resnotfound" ng-if="foundRestaurants.length==0">
+                <div class="col-xs-12">
+                    <p><img src="imgs/restaurant-not-found.png"></p>
+                    <h1 class="resnotfound__row font-2">ไม่พบร้านอาหารที่ต้องการ</h1>
+                    <p class="resnotfound__row">
+                        <a href="#/add-restaurant" type="button" class="btn btn-success">
+                            <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มร้านของคุณ
+                        </a>
+                    </p>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

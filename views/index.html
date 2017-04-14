@@ -1,13 +1,13 @@
 <div class="container-fluid headerwrap">
     <div class="col-xs-12">
         <div class="col-xs-12">
-            <div class="row headermenu text-right">
-                <div class="col-md-4 text-left">
+            <div class="row headermenu text-right hidden-xs">
+                <div class="col-sm-4 text-left">
                     <a href="#/add-restaurant" class="btn btn-sm btn-success" role="button">
                         <i class="glyphicon glyphicon-plus"></i> เพิ่มร้าน
                     </a>
                 </div>
-                <div class="col-md-8 text-right">
+                <div class="col-sm-8 text-right">
                     <a class="btn btn-sm btn-danger" role="button" ng-click="getCurrentLocation()">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; ร้านอาหารใกล้ตัว
                     </a>
@@ -16,6 +16,17 @@
                     </a>
                 </div>
             </div>
+
+            <div class="row headermenu visible-xs">
+                <div class="col-md-12">
+                    <div class="btn-group btn-group-justified">
+                        <a href="#/add-restaurant" style="width:25%" class="btn btn-sm btn-success" role="button">เพิ่มร้าน</a>
+                        <a style="width:45%" class="btn btn-sm btn-danger"  role="button" ng-click="getCurrentLocation()">ร้านอาหารใกล้ตัว</a>
+                        <a href="#/coupons" style="width:30%" class="btn btn-sm btn-warning" role="button">คูปอง</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="row headertopic text-center">
                 <div class="col-xs-12">
                     <img class="img-responsive" src="imgs/logo.png" style="margin: 0 auto;">
@@ -47,11 +58,19 @@
                         <button type="button" class="btn btn-block btn-lg btn-default" ng-click="searchRestaurant()">ค้นหา</button>
                     </div>
                     <div class="col-md-2"></div>
+                </form>
+                <div class="row hidden-sm hidden-xs">
                     <div class="col-xs-12 extension text-center">
                         <a href="#/advance"><i class="fa fa-search-plus" aria-hidden="true"></i> ค้นแบบละเอียด</a>|
                         <a href="#/maps"><i class="fa fa-map-o" aria-hidden="true"></i> ค้นจากแผนที่</a>
                     </div>
-                </form>
+                </div>
+                <div class="row visible-sm visible-xs">
+                    <div class="col-xs-12 extension-sm text-center">
+                        <p><a href="#/advance"><i class="fa fa-search-plus" aria-hidden="true"></i> ค้นแบบละเอียด</a></p>
+                        <p><a href="#/maps"><i class="fa fa-map-o" aria-hidden="true"></i> ค้นจากแผนที่</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

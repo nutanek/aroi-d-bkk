@@ -202,6 +202,7 @@ body {
     font-size: 10pt;
 }
 
+
 /*--------------------- Dropdown Type --------------------*/
 
 .dropdown-keyword {
@@ -233,6 +234,14 @@ body {
 
 .headerselector .extension, .headerselector .extension a {
     margin: 0 15px;
+    color: #FFFFFF;
+    text-shadow: 0px 0px 5px #000000;
+    text-decoration: none;
+}
+
+.headerselector .extension-sm, .headerselector .extension-sm a {
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: #FFFFFF;
     text-shadow: 0px 0px 5px #000000;
     text-decoration: none;
@@ -443,6 +452,20 @@ body {
     float: right;
 }
 
+.resnotfound {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.resnotfound__row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.resnotfound h1 {
+    color: #999999;
+}
+
 
 /*----------------------------------- Restaurants -----------------------------------*/
 
@@ -484,6 +507,41 @@ body {
 .resbody__wrapimg {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.resbody__wrapimg .location {
+    position: absolute;
+    top: 6px;
+    right: 5px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: #FF6633;
+    color: #FFFFFF;
+    opacity: 0.85;
+    z-index: 99;
+}
+
+.resbody__location {
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    z-index: 99;
+    opacity: .9
+}
+
+.resbody__location .text {
+    padding: 5px 15px;
+    font-size: 11pt;
+    font-weight: 700
+}
+
+.resbody__location .arrow {
+    width: 0;
+    height: 0;
+    border-top: 7px;
+    border-top-style: solid;
+    border-right: 10px solid transparent;
+    float: right
 }
 
 .resbody__wrapimg .title {

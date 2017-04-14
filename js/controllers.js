@@ -580,8 +580,9 @@ app.controller('showCoupon', [
         $timeout(function() {
             $http.get("api/show-coupon.php?id=" + $routeParams.id).then(function(response) {
                 $scope.coupon = response.data.body;
-                // $scope.resName = coupon.name;
-                $scope.coupon.couponContent = $scope.coupon.couponContent.replace(/\n/g, '<br/>');
+                if ($scope.coupon.length > 0) {
+                    $scope.coupon.couponContent = $scope.coupon.couponContent.replace(/\n/g, '<br/>');
+                }
                 console.log($scope.coupon);
             });
         });
