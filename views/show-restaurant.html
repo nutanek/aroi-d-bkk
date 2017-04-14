@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    dsdsd
+                    ฿ {{ restaurant.price.min }} - {{ restaurant.price.max }}
                 </div>
             </div>
             <div class="row resbody__wrapimg">
@@ -74,13 +74,9 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="panel panel-warning" style="border-radius: 0px; background: #FFCC00; height: 120px;">
-                                <div class="panel-body">
-                                    <div class="row resbodyinfo__row">
-
-                                    </div>
-                                </div>
-                            </div>
+                            <a ng-href="#/coupon/{{ idRes }}" target="_blank">
+                                <img src="imgs/coupon.png" class="check-coupon">
+                            </a>
                         </div>
                     </div>
 
@@ -92,7 +88,7 @@
                     </div>
 
                     <div class="panel panel-success" style="border-radius: 0px;">
-                        <div class="panel-heading" style="border-radius: 0px;"><i class="fa fa-home"></i> บริการเสริม</div>
+                        <div class="panel-heading" style="border-radius: 0px;"><i class="fa fa-life-ring"></i> บริการเสริม</div>
                         <div class="panel-body">
                             <div class="col-sm-4" ng-repeat="service in services" ng-if="restaurant.service[service.id]==1">
                                 <div class="row">

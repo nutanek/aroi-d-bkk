@@ -1,3 +1,16 @@
+.img_fade {
+    -webkit-transition: opacity .3s linear;
+    -moz-transition: opacity .3s linear;
+    opacity: 1;
+}
+
+.img_fade:hover {
+    -webkit-transition: opacity .3s linear;
+    -moz-transition: opacity .3s linear;
+    opacity: .60;
+}
+
+
 /*----------- loading 3 colors animation -----------*/
 
 #loader-wrapper {
@@ -94,7 +107,9 @@
     display: none
 }
 
+
 /*-------------- load more content --------------*/
+
 .seemorelist {
     border-radius: 5px;
     padding: 15px 30px;
@@ -108,8 +123,10 @@
 }
 
 .loadmore {
-    border: 3px solid #CCCCCC; /* Light grey */
-    border-top: 3px solid #3498db; /* Blue */
+    border: 3px solid #CCCCCC;
+    /* Light grey */
+    border-top: 3px solid #3498db;
+    /* Blue */
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -117,9 +134,14 @@
 }
 
 @keyframes spinmore {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
+
 
 /*-------------- loading page ----------------*/
 
@@ -432,8 +454,7 @@ body {
     border-top: 3px solid #FFCC00;
 }
 
-.restophead-sm-search .more,
-.restophead-sm-search .more a {
+.restophead-sm-search .more, .restophead-sm-search .more a {
     color: #FFFFFF;
 }
 
@@ -441,6 +462,7 @@ body {
     color: #AAAAAA;
     text-decoration: none;
 }
+
 
 /************ BODY ************/
 
@@ -458,11 +480,24 @@ body {
 }
 
 .bodytopic__text--new {
+    background: #2ecc71;
+    color: #FFFFFF;
+}
+
+.bodytopic__text--bestscore {
     background: #177BCC;
     color: #FFFFFF;
 }
 
-.bodytopic__arrow {
+.bodytopic__arrow--new {
+    width: 0;
+    height: 0;
+    border-bottom: 20px solid #27ae60;
+    border-right: 15px solid transparent;
+    float: left
+}
+
+.bodytopic__arrow--bestscore {
     width: 0;
     height: 0;
     border-bottom: 20px solid #003F90;
@@ -471,8 +506,13 @@ body {
 }
 
 .bodytopic__more {
+    color: #333333;
     margin-top: 20px;
     float: right;
+}
+
+.bodytopic__more:hover {
+    color: #888888;
 }
 
 .bodycontent {
@@ -524,9 +564,15 @@ body {
     padding-bottom: 10px;
 }
 
-.bodycontent__detail .name {
+.bodycontent__detail .name a {
     padding-top: 5px;
     font-size: 14pt;
+    color: #2980b9;
+}
+
+.bodycontent__detail .name a:hover {
+    text-decoration: none;
+    color: #0b476f;
 }
 
 .bodycontent__detail .price {
@@ -693,6 +739,15 @@ body {
 
 .resbodyinfo__row .service_icon {
     margin-right: 10px;
+}
+
+.check-coupon {
+    border: 2px dashed #ffd800;
+    width: 100%;
+}
+
+.check-coupon:hover {
+    border: 2px dashed #FF0000;
 }
 
 

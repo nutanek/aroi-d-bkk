@@ -10,7 +10,7 @@
 
 		// Searching by Maps
 		if ($data['lat'] != "" && $data['lng'] != "" && $data['distance'] != "") {
-			$dist = (float)$data['distance'] * 0.62137;
+			$dist = (float)$data['distance'] * 0.621371;
 			$restaurants = array();
 
 			$sql = "select *,
@@ -24,7 +24,7 @@
 	    		)
 	  			) AS distance
 				FROM restaurant
-				HAVING distance < ".(float)$dist."
+				HAVING distance < ".$dist."
 				ORDER BY distance;";
 
 
@@ -47,7 +47,7 @@
 							"lat" => (float)$row->map_lat,
 							"lng" => (float)$row->map_lon
 						),
-						"distance" => getDistance((float)$row->distance)
+						"distance" => getDistance((float)$row->distance/0.621371)
 					));
 			    }
 				$restaurants = array_merge($header, array("body" => $body));
@@ -117,6 +117,14 @@
 		    } else {
 		        $sql = $sqlQuery;
 		    }
+
+			if ($data['order'] != "") {
+				if ($data['order'] === "new") {
+					$sql = "select * from restaurant order by id_res desc";
+				} else if ($data['order'] === "score") {
+					$sql = "select * from restaurant order by score_total desc";
+				}
+			}
 
 		    if ($result = $conn->query($sql)) {
 		        $header = array(

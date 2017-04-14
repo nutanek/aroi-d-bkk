@@ -59,7 +59,7 @@ app.controller('homePage', [
 
         var nearMeSearch = function(position) {
             $timeout(function() {
-                $location.url('/search?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + "&distance=5");
+                $location.url('/search?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + "&distance=10");
             });
         }
     }
@@ -78,6 +78,7 @@ app.controller('addNewRestaurant', [
         $scope.resArea = menuAreaRes.slice(1);
         $scope.resTypeSelected = $scope.resTypes[0];
         $scope.resAreaSelected = $scope.resArea[0];
+        $scope.services = menuServiceRes;
 
         $scope.service = {
             value1: 0,
@@ -145,13 +146,6 @@ app.controller('addNewRestaurant', [
             });
         };
 
-        $scope.hideModal = function() {
-            // alert('hgfdfghjkl');
-            // $timeout(function() {
-            //     $('#successAddNew').modal('hide');
-            // }, 400);
-        }
-
         function uploadFile(name) {
             var file = $scope.myFile;
             console.log('file is ');
@@ -172,24 +166,7 @@ app.controller('showRestaurant', [
         $scope.scoreHover = [0, 0, 0];
         $scope.scoreClick = [0, 0, 0];
         $scope.alertScore = false;
-        $scope.services = [
-            {
-                id: 1,
-                name: "ที่จอดรถ"
-            }, {
-                id: 2,
-                name: "Wi-Fi"
-            }, {
-                id: 3,
-                name: "เครื่องปรับอากาศ"
-            }, {
-                id: 4,
-                name: "ทีวี"
-            }, {
-                id: 5,
-                name: "วงดนตรีสด"
-            }
-        ];
+        $scope.services = menuServiceRes;
         $timeout(function() {
             $http.get("api/show-restaurant.php?id=" + $scope.idRes).then(function(response) {
                 $scope.restaurant = response.data.body;
@@ -300,6 +277,8 @@ app.controller('searchRestaurant', [
         var lat = filterSearch(qs['lat']);
         var lng = filterSearch(qs['lng']);
         var distance = filterSearch(qs['distance']);
+        // sort
+        var order = filterSearch(qs['order']);
 
         console.log(area, keyword);
 
@@ -323,7 +302,8 @@ app.controller('searchRestaurant', [
                 service5: service5,
                 lat: lat,
                 lng: lng,
-                distance: distance
+                distance: distance,
+                order: order
             }
         }
         $http(req).then(function(response) {
@@ -472,7 +452,7 @@ app.controller('searchBarTop', [
 
         var nearMeSearch = function(position) {
             $timeout(function() {
-                $location.url('/search?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + "&distance=5");
+                $location.url('/search?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + "&distance=10");
             });
         }
 
@@ -610,6 +590,7 @@ app.controller('showCoupon', [
     '$http',
     '$routeParams',
     function($scope, $timeout, $http, $routeParams) {
+        $scope.idRes = $routeParams.id;
         $timeout(function() {
             $http.get("api/show-coupon.php?id=" + $routeParams.id).then(function(response) {
                 $scope.coupon = response.data.body;
