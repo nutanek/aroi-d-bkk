@@ -4,7 +4,7 @@
         <div class="container">
             <navigator title-level1="คูปอง"></navigator>
             <a ng-href="#/coupon/{{ coupon.id }}">
-                <div class="row listcoupon boxshadow" ng-repeat="coupon in coupons">
+                <div class="row listcoupon boxshadow" ng-repeat="coupon in coupons | limitTo:couponPerPage">
                     <div class="col-xs-12" style="padding-left: 0px;">
                         <div class="col-sm-3 hidden-xs">
                             <div class="row wrapimg img-effect-2" crop-img wrap-height="0.6" ng-style="wrapSize">
@@ -34,7 +34,16 @@
             </a>
         </div>
     </div>
+
+    <div class="col-xs-12 text-center" ng-if="coupons.length!==0">
+        <span class="seemorelist" ng-show="couponPerPage < coupons.length" ng-click="loadMore()">
+            <span ng-show="!loadingMore"><i class="fa fa-chevron-down" aria-hidden="true"></i> ดูเพิ่มเติม ({{ coupons.length - couponPerPage }})</span>
+            <span ng-show="loadingMore"><img src="imgs/loadmore.svg">&nbsp; loading</span>
+        </span>
+    </div>
+
 </div>
+
 
 
 <div id="getCoupon" class="modal animated bounceInUp" role="dialog">

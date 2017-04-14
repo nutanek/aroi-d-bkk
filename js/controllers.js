@@ -282,8 +282,9 @@ app.controller('searchRestaurant', [
     '$routeParams',
     '$location',
     function($scope, $timeout, $http, $routeParams, $location) {
+        $scope.resPerPage = 9;
+        $scope.loadingMore = false;
         var qs = $location.search();
-
         var keyword = filterSearch(qs['keyword']);
         var type = filterSearch(qs['type']);
         var area = filterSearch(qs['area']);
@@ -334,6 +335,16 @@ app.controller('searchRestaurant', [
                 $('#searchAdvance').modal('hide');
             });
         });
+
+        $scope.loadMore = function() {
+            if ($scope.resPerPage < $scope.foundRestaurants.length) {
+                $scope.loadingMore = true;
+                $timeout(function() {
+                    $scope.resPerPage += 3;
+                    $scope.loadingMore = false;
+                }, 500);
+            }
+        }
 
         function filterSearch(key) {
             if (typeof key === "undefined") {
@@ -566,6 +577,9 @@ app.controller('listCoupons', [
     '$timeout',
     '$http',
     function($scope, $timeout, $http, $location) {
+        $scope.couponPerPage = 6;
+        $scope.loadingMore = false;
+
         $timeout(function() {
             $http.get("api/show-coupons.php?num=0").then(function(response) {
                 $scope.coupons = response.data.body;
@@ -576,6 +590,16 @@ app.controller('listCoupons', [
         $scope.getCoupon = function(name, code) {
             $scope.resName = name;
             $scope.couponCode = code;
+        }
+
+        $scope.loadMore = function() {
+            if ($scope.couponPerPage < $scope.coupons.length) {
+                $scope.loadingMore = true;
+                $timeout(function() {
+                    $scope.couponPerPage += 3;
+                    $scope.loadingMore = false;
+                }, 500);
+            }
         }
     }
 ]);

@@ -94,6 +94,32 @@
     display: none
 }
 
+/*-------------- load more content --------------*/
+.seemorelist {
+    border-radius: 5px;
+    padding: 15px 30px;
+    background: #3498db;
+    color: #FFFFFF;
+}
+
+.seemorelist:hover {
+    cursor: pointer;
+    background: #2980b9;
+}
+
+.loadmore {
+    border: 3px solid #CCCCCC; /* Light grey */
+    border-top: 3px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 0.5s linear infinite;
+}
+
+@keyframes spinmore {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 /*-------------- loading page ----------------*/
 

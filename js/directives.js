@@ -36,6 +36,26 @@ app.directive('ngEnter', function() {
     };
 });
 
+// app.directive('checkScrollEnd', function($window) {
+//     return {
+//         restrict: 'A',
+//         link: function(scope, element, attrs, ctrl) {
+//             angular.element($window).bind("scroll", function() {
+//                 var windowHeight = "innerHeight" in window
+//                     ? window.innerHeight
+//                     : document.documentElement.offsetHeight;
+//                 var body = document.body,
+//                     html = document.documentElement;
+//                 var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+//                 windowBottom = windowHeight + window.pageYOffset;
+//                 if (windowBottom >= docHeight) {
+//                     alert('bottom reached');
+//                 }
+//             });
+//         }
+//     };
+// });
+
 app.directive('fileModel', [
     '$parse',
     function($parse) {
@@ -263,8 +283,7 @@ app.directive("navigator", [function() {
                 scope.titleLevel2 = attrs.titleLevel2;
 
                 scope.$watchGroup([
-                    'coupon.name',
-                    'restaurant.name'
+                    'coupon.name', 'restaurant.name'
                 ], function(newVal) {
                     if (newVal) {
                         scope.titleLevel2 = attrs.titleLevel2;
