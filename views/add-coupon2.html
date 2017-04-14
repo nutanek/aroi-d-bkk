@@ -9,13 +9,13 @@
     <div class="row blanktop--normal hidden-sm hidden-xs"></div>
     <navigator title-level1="เพิ่มคูปอง" url-level1="#/add-coupon" title-level2="{{restaurant.name}}"></navigator>
     <div class="row text-center">
-        <h1 class="font-2"><i class="fa fa-cutlery"></i> เพิ่มคูปอง</h1>
+        <h1 class="font-2"><i class="fa fa-gift" aria-hidden="true"></i> เพิ่มคูปอง</h1>
     </div>
     <div class="row">
         <form name="addNewCoupon">
             <div class="col-md-12">
                 <div class="panel panel-success">
-                    <div class="panel-heading"><i class="fa fa-home"></i> ข้อมูลคูปอง</div>
+                    <div class="panel-heading"><i class="fa fa-tags" aria-hidden="true"></i> ข้อมูลคูปอง</div>
                     <div class="panel-body">
                         <div class="col-xs-12">
                             <li class="list-group-item couponbody__list">
@@ -69,7 +69,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <img src="imgs/correct.png" alt="">
                 <p>เพิ่มคูปองให้ร้านของคุณเรียบร้อยแล้ว</p>
-                <button type="button" class="btn btn-warning" data-dismiss="modal">ดูคูปอง</button>
+                <a id="clickToCoupon" ng-href="#/coupon/{{ idRes }}" role="button" class="btn btn-warning">ดูคูปอง</a>
             </div>
         </div>
     </div>
@@ -100,3 +100,11 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#clickToCoupon").click(function() {
+            $('#successAddCoupon').modal('hide');
+        });
+    });
+</script>

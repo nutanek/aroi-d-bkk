@@ -60,8 +60,10 @@
 		                                   '$data[img]')";
 
 		    if ($conn->query($sql) === TRUE) {
+				$id = mysqli_insert_id($conn);
     			echo json_encode(array(
-					"status" => "success"
+					"status" => "success",
+					"id" => $id
 				));
 			} else {
     			echo json_encode(array(

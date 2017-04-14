@@ -9,13 +9,13 @@
     <div class="row blanktop--normal hidden-sm hidden-xs"></div>
     <navigator title-level1="เพิ่มคูปอง"></navigator>
     <div class="row text-center">
-        <h1 class="font-2"><i class="fa fa-cutlery"></i> เพิ่มคูปอง</h1>
+        <h1 class="font-2"><i class="fa fa-gift" aria-hidden="true"></i> เพิ่มคูปอง</h1>
     </div>
     <div class="row">
         <form name="addNewCoupon">
             <div class="col-md-12">
                 <div class="panel panel-success">
-                    <div class="panel-heading"><i class="fa fa-home"></i> ข้อมูลคูปอง</div>
+                    <div class="panel-heading"><i class="fa fa-tags" aria-hidden="true"></i> ข้อมูลคูปอง</div>
                     <div class="panel-body">
                         <div class="form-group col-md-12">
                             <label for="usr">ชื่อร้าน:</label>
@@ -54,7 +54,7 @@
                             </ul>
                             <ul class="list-group" ng-show="filtered.length==0">
                                 <li class="list-group-item text-center">
-                                    <p>ไม่พบร้านของคุณ, กรุณาเพิ่มร้านของคุณก่อน</p>
+                                    <div class="alert alert-warning" role="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> ไม่พบร้านของคุณ, กรุณาเพิ่มร้านของคุณก่อน</div>
                                     <p>
                                         <a href="#/add-restaurant" class="btn btn-lg btn-success" role="button"><i class="glyphicon glyphicon-plus"></i> เพิ่มร้าน</a>
                                     </p>

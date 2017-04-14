@@ -148,8 +148,8 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <img src="imgs/correct.png" alt="">
                 <p>เพิ่มร้านของคุณเรียบร้อยแล้ว</p>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">ดูร้าน</button>
-                <button type="button" class="btn btn-warning" data-dismiss="modal">เพิ่มคูปอง</button>
+                <a id="clickToRes" ng-href="#/restaurant/{{ idRes }}" role="button" class="btn btn-primary" ng-click="hideModal()">ดูร้าน</a>
+                <a id="clickToCoupon" ng-href="#/add-coupon/{{ idRes }}" role="button" class="btn btn-warning" ng-click="hideModal()">เพิ่มคูปอง</a>
             </div>
         </div>
     </div>
@@ -169,3 +169,10 @@
 </div>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6gFvIgL4dUvIr48Yt1Uo4qJ8KI-6tO4M&callback=initMap"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#clickToRes, #clickToCoupon").click(function() {
+            $('#successAddNew').modal('hide');
+        });
+    });
+</script>

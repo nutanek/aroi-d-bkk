@@ -74,8 +74,8 @@ app.controller('addNewRestaurant', [
     function($scope, $timeout, $http, fileUpload, $rootScope) {
         $rootScope.loading = false;
 
-        $scope.resTypes = menuTypeRes;
-        $scope.resArea = menuAreaRes;
+        $scope.resTypes = menuTypeRes.slice(1);
+        $scope.resArea = menuAreaRes.slice(1);
         $scope.resTypeSelected = $scope.resTypes[0];
         $scope.resAreaSelected = $scope.resArea[0];
 
@@ -125,6 +125,7 @@ app.controller('addNewRestaurant', [
                         console.log(response.data);
 
                         if (response.data.status === "success") {
+                            $scope.idRes = response.data.id;
                             uploadFile(imgName);
                             $scope.name = $scope.address = $scope.tel = $scope.content = $scope.priceMin = $scope.priceMax = null;
                             $scope.service.value1 = $scope.service.value2 = $scope.service.value3 = $scope.service.value4 = $scope.service.value5 = 0;
@@ -143,6 +144,13 @@ app.controller('addNewRestaurant', [
                 }
             });
         };
+
+        $scope.hideModal = function() {
+            // alert('hgfdfghjkl');
+            // $timeout(function() {
+            //     $('#successAddNew').modal('hide');
+            // }, 400);
+        }
 
         function uploadFile(name) {
             var file = $scope.myFile;
@@ -485,6 +493,7 @@ app.controller('addCoupon2', [
     '$location',
     '$rootScope',
     function($scope, $timeout, $http, $routeParams, $location, $rootScope) {
+        $scope.idRes = $routeParams.id;
         $timeout(function() {
             $http.get("api/show-restaurant.php?id=" + $routeParams.id).then(function(response) {
                 $scope.restaurant = response.data.body;
