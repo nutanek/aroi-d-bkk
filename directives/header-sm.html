@@ -1,0 +1,74 @@
+<div class="col-xs-12 restophead-sm visible-sm visible-xs">
+    <div class="row">
+        <div class="col-xs-3 text-left icon-top menu">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+        <div class="col-xs-6 text-center">
+            <a href="#/"><img class="logo" src="imgs/logo-sm.png"></a>
+        </div>
+        <div class="col-xs-3 text-right icon-top search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="row restophead-sm-menu" style="display:none">
+        <a href="#/">
+            <div class="col-xs-12 menurow">
+                <i class="fa fa-home" aria-hidden="true"></i>&nbsp; หน้าแรก
+            </div>
+        </a>
+        <a ng-click="getCurrentLocation()">
+            <div class="col-xs-12 menurow">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; ร้านอาหารใกล้ตัว
+            </div>
+        </a>
+        <a href="#/coupons">
+            <div class="col-xs-12 menurow">
+                <i class="fa fa-gift" aria-hidden="true"></i>&nbsp; คูปอง
+            </div>
+        </a>
+        <a href="#/add-restaurant">
+            <div class="col-xs-12 menurow">
+                <i class="glyphicon glyphicon-plus"></i>&nbsp; เพิ่มร้านของคุณ
+            </div>
+        </a>
+    </div>
+    <div class="row restophead-sm-search" style="display:none">
+        <div class="col-xs-12">
+            <div class="input-group">
+                <input type="text" class="form-control input-lg" ng-model="keyword" placeholder="คำค้น: ชื่อร้าน, ชื่ออาหาร...">
+                <span class="input-group-btn">
+                    <button class="btn btn-lg btn-success" type="button" ng-click="searchRestaurantNormal()">ค้นหา</button>
+                </span>
+            </div>
+            <br>
+            <p class="more text-center"><a href="#/advance"><i class="fa fa-search-plus" aria-hidden="true"></i> ค้นแบบละเอียด</a> | <a href="#/maps"><i class="fa fa-map-o" aria-hidden="true"></i> ค้นจากแผนที่</a></p>
+        </div>
+    </div>
+</div>
+<div class="restophead-sm-blank visible-sm visible-xs"></div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        cal_menu_height($(window).height());
+        $(window).resize(function() {
+            cal_menu_height($(window).height());
+        });
+
+        $(".restophead-sm .menu").click(function() {
+            $(".restophead-sm-search").hide();
+            $(".restophead-sm-menu").slideToggle("fast");
+        });
+        $(".restophead-sm-menu .menurow").click(function() {
+            $(".restophead-sm-menu").slideToggle("fast");
+        });
+        $(".restophead-sm .search").click(function() {
+            $(".restophead-sm-menu").hide();
+            $(".restophead-sm-search").slideToggle("fast");
+        });
+    });
+
+    function cal_menu_height(windowHeight) {
+        let menuResHeight = windowHeight - 50;
+        $(".restophead-sm-menu").css("height", menuResHeight + "px");
+    }
+</script>

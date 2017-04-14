@@ -355,6 +355,66 @@ body {
     margin-top: 25px;
 }
 
+.restophead-sm {
+    height: 50px;
+    background: #25282E;
+    position: fixed;
+    z-index: 9999999;
+}
+
+.restophead-sm-blank {
+    height: 50px;
+}
+
+.restophead-sm .logo {
+    height: 40px;
+    margin-top: 5px;
+}
+
+.restophead-sm .icon-top {
+    color: #FFFFFF;
+    font-size: 20pt;
+    margin-top: 5px;
+}
+
+.restophead-sm-menu {
+    background: #000000;
+    opacity: 0.8;
+    margin-top: 5px;
+    border-top: 3px solid #FFCC00;
+}
+
+.restophead-sm-menu .menurow {
+    padding-left: 30px;
+    color: #FFFFFF;
+    font-size: 16pt;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dotted #666666;
+}
+
+.restophead-sm-menu .menurow:hover {
+    cursor: pointer;
+    background: #444444;
+}
+
+.restophead-sm-search {
+    background: #333333;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 5px;
+    border-top: 3px solid #FFCC00;
+}
+
+.restophead-sm-search .more,
+.restophead-sm-search .more a {
+    color: #FFFFFF;
+}
+
+.restophead-sm-search .more a:hover {
+    color: #AAAAAA;
+    text-decoration: none;
+}
 
 /************ BODY ************/
 

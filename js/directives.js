@@ -16,6 +16,13 @@ app.directive('advanceSearch', function() {
     };
 });
 
+app.directive('headerSm', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'directives/header-sm.html'
+    };
+});
+
 app.directive('ngEnter', function() {
     return function(scope, element, attrs) {
         element.bind("keydown keypress", function(event) {
