@@ -1063,3 +1063,36 @@ app.controller('searchByMap', [
         }
     }
 ]);
+
+app.controller('removeRestaurant', [
+    '$scope',
+    '$timeout',
+    '$http',
+    '$location',
+    function($scope, $timeout, $http, $location) {
+        $timeout(function() {
+            $http.get("api/list-restaurants.php").then(function(response) {
+                $scope.restaurants = response.data.body;
+                mainLog($scope.restaurants);
+            });
+        });
+
+        $scope.removeNow = function(id) {
+            var r = confirm("แน่ใจนะ!!! ว่าจะลบ ระวังบึ้มนาจา^^");
+            if (r == true) {
+                $timeout(function() {
+                    $http.get("api/remove-restaurant.php?id=" + id).then(function(response) {
+                        $scope.restaurants = response.data.body;
+                        mainLog($scope.restaurants);
+                        $timeout(function() {
+                            $http.get("api/list-restaurants.php").then(function(response) {
+                                $scope.restaurants = response.data.body;
+                            });
+                        });
+                    });
+                });
+            }
+        }
+
+    }
+]);

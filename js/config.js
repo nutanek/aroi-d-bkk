@@ -1,5 +1,5 @@
 var configs = {
-    state: "dev", //dev, prod
+    state: "prod", //dev, prod
     fb_comment_url: "http://www.indytheme.com/AroiDBkk",
-    gaCode: "UA-97430409-1"
+    gaCode: "UA-97413157-1"
 };

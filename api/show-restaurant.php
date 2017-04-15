@@ -51,7 +51,7 @@
 				);
 		    }
 			$restaurants = array_merge($header, array("body" => $body));
-			echo json_encode($restaurants, JSON_UNESCAPED_UNICODE);
+			echo json_encode($restaurants);
 		} else {
 			echo json_encode(array(
 				"status" => "error"

@@ -49,5 +49,10 @@ app.config(function($routeProvider) {
         title : "ค้นหาแบบละเอียด",
         controller: "searchBarTop",
         templateUrl : "views/advance-search.html"
+    })
+    .when("/remove-restaurant", {
+        title : "ลบร้านอาหาร",
+        controller: "removeRestaurant",
+        templateUrl : "views/remove.html"
     });
 });

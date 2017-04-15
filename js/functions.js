@@ -5,8 +5,8 @@ function mainLog(log) {
 }
 
 function googleAnalytics(props) {
-    ga('send', props);
-    if (configs.state == "dev") {
+    if (configs.state == "prod") {
+        ga('send', props);
         mainLog("google analytics", props);
     }
 }
