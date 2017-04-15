@@ -18,7 +18,7 @@
                             <input type="text" id="address" class="form-control" placeholder="ค้นหาที่ตั้ง">
                         </div>
                         <div class="form-group">
-                            <button id="submit" type="button" class="btn btn-block btn-info">ค้นหา</button>
+                            <button id="submit" type="button" class="btn btn-block btn-info" ng-click="__searchLocation()">ค้นหา</button>
                         </div>
                     </div>
                     <div class="col-xs-12 latlng">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 text-center" style="margin-top: 20px">
-                        <button type="button" class="btn btn-primary" ng-click="searchRestaurantByMap()"><i class="fa fa-search" aria-hidden="true"></i> ค้นหาร้าน</button>
+                        <button type="button" class="btn btn-primary" ng-click="searchRestaurantByMap(); __searcRestaurantsByMap();"><i class="fa fa-search" aria-hidden="true"></i> ค้นหาร้าน</button>
                     </div>
                 </div>
             </div>

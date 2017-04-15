@@ -12,14 +12,14 @@ app.service('fileUpload', ['$http', '$timeout', '$rootScope', function($http, $t
                     }
                 })
                 .success(function() {
-                    console.log("Success");
+                    mainLog("Success");
                     $rootScope.loading = false;
                     $timeout(function() {
                         $('#successAddNew').modal('show');
                     });
                 })
                 .error(function() {
-                    console.log("Error");
+                    mainLog("Error");
                     $rootScope.loading = false;
                     $rootScope.resultAddNew = true;
                 });

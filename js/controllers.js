@@ -23,10 +23,12 @@ app.controller('homePage', [
         $scope.resType = menuTypeRes.slice(1);
         $scope.resKeyword = "";
 
+        $scope.selectedResType = false;
+
         $timeout(function() {
             $http.get("api/show-new-restaurants.php?num=6").then(function(response) {
                 $scope.newRestaurants = response.data.body;
-                console.log($scope.newRestaurants);
+                mainLog($scope.newRestaurants);
             });
         });
         $timeout(function() {
@@ -37,6 +39,7 @@ app.controller('homePage', [
 
         $scope.selectResType = function(keyword) {
             $scope.resKeyword = keyword;
+            $scope.selectedResType = true;
         }
 
         $scope.searchRestaurant = function() {
@@ -60,6 +63,101 @@ app.controller('homePage', [
         var nearMeSearch = function(position) {
             $timeout(function() {
                 $location.url('/search?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + "&distance=10");
+            });
+        }
+
+        // Google Analytics
+        googleAnalytics({
+          hitType: 'pageview',
+          page: 'Homepage'
+        });
+        $scope.__addNewRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Add new restaurant',
+              eventAction: 'click',
+              eventLabel: 'Homepage'
+            });
+        }
+        $scope.__searchNearMe = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search near restaurant',
+              eventAction: 'click',
+              eventLabel: 'Homepage'
+            });
+        }
+        $scope.__viewCouponsList = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'View coupons list',
+              eventAction: 'click',
+              eventLabel: 'Homepage'
+            });
+        }
+        $scope.__searcRestaurants = function() {
+            if ($scope.selectedResType) {
+                googleAnalytics({
+                  hitType: 'event',
+                  eventCategory: 'Search restaurants',
+                  eventAction: 'submit',
+                  eventLabel: 'Homepage (with selected type suggestions)'
+                });
+            } else {
+                googleAnalytics({
+                  hitType: 'event',
+                  eventCategory: 'Search restaurants',
+                  eventAction: 'submit',
+                  eventLabel: 'Homepage (without selected type suggestions)'
+                });
+            }
+        }
+        $scope.__searcRestaurantsAdvance = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search restaurants (Advance)',
+              eventAction: 'click',
+              eventLabel: 'Homepage'
+            });
+        }
+        $scope.__searcRestaurantsByMap = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search restaurants (Map)',
+              eventAction: 'click',
+              eventLabel: 'Homepage'
+            });
+        }
+        $scope.__seeMoreNewRestaurants = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'See more new restaurants',
+              eventAction: 'click',
+              eventLabel: 'Homepage'
+            });
+        }
+        $scope.__seeMoreBestScoreRestaurants = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'See more best score restaurants',
+              eventAction: 'click',
+              eventLabel: 'Homepage'
+            });
+        }
+        $scope.__viewNewRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'View new restaurant',
+              eventAction: 'click',
+              eventLabel: 'Homepage'
+            });
+        }
+        $scope.__viewBestScoreRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'View best score restaurant',
+              eventAction: 'click',
+              eventLabel: 'Homepage'
             });
         }
     }
@@ -123,7 +221,7 @@ app.controller('addNewRestaurant', [
                         }
                     }
                     $http(req).then(function(response) {
-                        console.log(response.data);
+                        mainLog(response.data);
 
                         if (response.data.status === "success") {
                             $scope.idRes = response.data.id;
@@ -148,11 +246,57 @@ app.controller('addNewRestaurant', [
 
         function uploadFile(name) {
             var file = $scope.myFile;
-            console.log('file is ');
+            mainLog('file is ');
             console.dir(file);
             var uploadUrl = "controller/fileUpload.php";
             fileUpload.uploadFileToUrl(file, uploadUrl, name);
         };
+
+        // Google Analytics
+        googleAnalytics({
+          hitType: 'pageview',
+          page: 'Added-new restaurant page'
+        });
+        $scope.__addNewRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Add new restaurant',
+              eventAction: 'submit',
+              eventLabel: 'Added-new restaurant form'
+            });
+        }
+        $scope.__searchLocation = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search location',
+              eventAction: 'submit',
+              eventLabel: 'Google Map'
+            });
+        }
+        $scope.__viewYourRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'View your restaurant',
+              eventAction: 'click',
+              eventLabel: 'after added restaurant'
+            });
+        }
+        $scope.__addYourCoupon = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Add your coupon',
+              eventAction: 'click',
+              eventLabel: 'after added restaurant'
+            });
+        }
+        $scope.__closeModal = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Close modal',
+              eventAction: 'close',
+              eventLabel: 'after added restaurant'
+            });
+        }
     }
 ]);
 
@@ -173,7 +317,7 @@ app.controller('showRestaurant', [
                 $scope.totalScoreAvg = $scope.restaurant.score.totalAvg;
                 $scope.restaurant.content = $scope.restaurant.content.replace(/\n/g, '<br/>');
                 calScore();
-                console.log($scope.restaurant);
+                mainLog($scope.restaurant);
             });
         });
 
@@ -249,6 +393,44 @@ app.controller('showRestaurant', [
             $scope.restaurant.score.taste = parseFloat(($scope.restaurant.score.taste / $scope.restaurant.numVote).toFixed(1));
             $scope.restaurant.score.service = parseFloat(($scope.restaurant.score.service / $scope.restaurant.numVote).toFixed(1));
         }
+
+        // Google Analytics
+        googleAnalytics({
+          hitType: 'pageview',
+          page: 'Restaurant content id ' +  $scope.idRes
+        });
+        $scope.__seeFullMap = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'See full map',
+              eventAction: 'click',
+              eventLabel: 'Restaurant content page'
+            });
+        }
+        $scope.__checkCoupon = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Check coupon',
+              eventAction: 'click',
+              eventLabel: 'Restaurant content page'
+            });
+        }
+        $scope.__giveScore1 = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Give score',
+              eventAction: 'click',
+              eventLabel: 'Restaurant content page'
+            });
+        }
+        $scope.__giveScore2 = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Give score',
+              eventAction: 'submit',
+              eventLabel: 'Restaurant content page'
+            });
+        }
     }
 ]);
 
@@ -280,7 +462,7 @@ app.controller('searchRestaurant', [
         // sort
         var order = filterSearch(qs['order']);
 
-        console.log(area, keyword);
+        mainLog(area, keyword);
 
         let req = {
             method: 'POST',
@@ -309,7 +491,7 @@ app.controller('searchRestaurant', [
         $http(req).then(function(response) {
             if (response.data.status === "success") {
                 $scope.foundRestaurants = response.data.body;
-                console.log(response.data.body);
+                mainLog(response.data.body);
             }
             $timeout(function() {
                 $('#searchAdvance').modal('hide');
@@ -331,6 +513,36 @@ app.controller('searchRestaurant', [
                 return "";
             }
             return key;
+        }
+
+        // Google Analytics
+        googleAnalytics({
+          hitType: 'pageview',
+          page: 'Restaurant list page'
+        });
+        $scope.__viewRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'View Restaurant',
+              eventAction: 'click',
+              eventLabel: 'Restaurant list page'
+            });
+        }
+        $scope.__loadMoreRestaurants = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Load more restaurant',
+              eventAction: 'click',
+              eventLabel: 'Restaurant list page'
+            });
+        }
+        $scope.__addNewRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Add new restaurant',
+              eventAction: 'click',
+              eventLabel: 'Restaurant list page'
+            });
         }
     }
 ]);
@@ -456,6 +668,79 @@ app.controller('searchBarTop', [
             });
         }
 
+        // Google Analytics
+        $scope.__goToHompage = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Go to homepage',
+              eventAction: 'click',
+              eventLabel: 'Top bar'
+            });
+        }
+        $scope.__addNewRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Add new restaurant',
+              eventAction: 'click',
+              eventLabel: 'Top bar'
+            });
+        }
+        $scope.__searchNearMe = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search near restaurant',
+              eventAction: 'click',
+              eventLabel: 'Top bar'
+            });
+        }
+        $scope.__viewCouponsList = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'View coupons list',
+              eventAction: 'click',
+              eventLabel: 'Top bar'
+            });
+        }
+        $scope.__searcRestaurants = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search restaurants',
+              eventAction: 'submit',
+              eventLabel: 'Top bar'
+            });
+        }
+        $scope.__searcRestaurantsAdvance1 = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search restaurants (Advance)',
+              eventAction: 'click',
+              eventLabel: 'Top bar'
+            });
+        }
+        $scope.__searcRestaurantsAdvance2 = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search restaurants (Advance)',
+              eventAction: 'submit',
+              eventLabel: 'Top bar'
+            });
+        }
+        $scope.__searcRestaurantsAdvance3 = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search restaurants (Advance)',
+              eventAction: 'submit',
+              eventLabel: 'advanced search page'
+            });
+        }
+        $scope.__searcRestaurantsByMap = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search restaurants (Map)',
+              eventAction: 'click',
+              eventLabel: 'Top bar'
+            });
+        }
     }
 ]);
 
@@ -469,10 +754,31 @@ app.controller('addCoupon', [
         $timeout(function() {
             $http.get("api/list-restaurants.php").then(function(response) {
                 $scope.restaurants = response.data.body;
-                console.log($scope.restaurants);
+                mainLog($scope.restaurants);
             });
         });
 
+        // Google Analytics
+        googleAnalytics({
+          hitType: 'pageview',
+          page: 'Added-coupon page 1'
+        });
+        $scope.__addNewRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Add new restaurant',
+              eventAction: 'click',
+              eventLabel: 'Added-coupon page 1'
+            });
+        }
+        $scope.__selectRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Select restaurant to add coupon',
+              eventAction: 'click',
+              eventLabel: 'Added-coupon page 1'
+            });
+        }
     }
 ]);
 
@@ -488,7 +794,7 @@ app.controller('addCoupon2', [
         $timeout(function() {
             $http.get("api/show-restaurant.php?id=" + $routeParams.id).then(function(response) {
                 $scope.restaurant = response.data.body;
-                console.log($scope.restaurant);
+                mainLog($scope.restaurant);
             });
         });
 
@@ -527,7 +833,7 @@ app.controller('addCoupon2', [
                         }
                     }
                     $http(req).then(function(response) {
-                        console.log(response.data);
+                        mainLog(response.data);
 
                         if (response.data.status === "success") {
                             $timeout(function() {
@@ -549,6 +855,52 @@ app.controller('addCoupon2', [
                 }
             });
         }
+
+        // Google Analytics
+        googleAnalytics({
+          hitType: 'pageview',
+          page: 'Added-coupon page 2'
+        });
+        $scope.__changeRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Change restaurant to add coupon',
+              eventAction: 'click',
+              eventLabel: 'Added-coupon page 2'
+            });
+        }
+        $scope.__generateCouponCode = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Generate coupon code',
+              eventAction: 'click',
+              eventLabel: 'Added-coupon page 2'
+            });
+        }
+        $scope.__addNewCoupon = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Add new coupon for restaurant',
+              eventAction: 'submit',
+              eventLabel: 'Added-coupon page 2'
+            });
+        }
+        $scope.__viewYourCoupon = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'View your coupon',
+              eventAction: 'click',
+              eventLabel: 'after added coupon'
+            });
+        }
+        $scope.__closeModal = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Close modal',
+              eventAction: 'close',
+              eventLabel: 'after added coupon'
+            });
+        }
     }
 ]);
 
@@ -563,7 +915,7 @@ app.controller('listCoupons', [
         $timeout(function() {
             $http.get("api/show-coupons.php?num=0").then(function(response) {
                 $scope.coupons = response.data.body;
-                console.log($scope.coupons);
+                mainLog($scope.coupons);
             });
         });
 
@@ -581,6 +933,44 @@ app.controller('listCoupons', [
                 }, 500);
             }
         }
+
+        // Google Analytics
+        googleAnalytics({
+          hitType: 'pageview',
+          page: 'coupons list page'
+        });
+        $scope.__viewCoupon = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'View coupon detail',
+              eventAction: 'click',
+              eventLabel: 'coupons list page'
+            });
+        }
+        $scope.__viewRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'View Restaurant',
+              eventAction: 'click',
+              eventLabel: 'coupons list page'
+            });
+        }
+        $scope.__getCoupon = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Get coupon code',
+              eventAction: 'click',
+              eventLabel: 'coupons list page'
+            });
+        }
+        $scope.__loadMoreCoupons = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Load more coupons',
+              eventAction: 'click',
+              eventLabel: 'coupons list page'
+            });
+        }
     }
 ]);
 
@@ -597,13 +987,43 @@ app.controller('showCoupon', [
                 if ($scope.coupon.length > 0) {
                     $scope.coupon.couponContent = $scope.coupon.couponContent.replace(/\n/g, '<br/>');
                 }
-                console.log($scope.coupon);
+                mainLog($scope.coupon);
             });
         });
 
         $scope.getCoupon = function(name, code) {
             $scope.resName = name;
             $scope.couponCode = code;
+        }
+
+        // Google Analytics
+        googleAnalytics({
+          hitType: 'pageview',
+          page: 'Coupon content id ' + $scope.idRes
+        });
+        $scope.__viewRestaurant = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'View Restaurant',
+              eventAction: 'click',
+              eventLabel: 'Coupon content'
+            });
+        }
+        $scope.__getCoupon = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Get coupon code',
+              eventAction: 'click',
+              eventLabel: 'Coupon content'
+            });
+        }
+        $scope.__addNewCoupon = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Add new coupon for restaurant',
+              eventAction: 'click',
+              eventLabel: 'Coupon content'
+            });
         }
     }
 ]);
@@ -618,6 +1038,28 @@ app.controller('searchByMap', [
             $timeout(function() {
                 $location.url('/search?lat=' + $scope.mapLat + '&lng=' + $scope.mapLon + '&distance=5');
             }, 200);
+        }
+
+        // Google Analytics
+        googleAnalytics({
+          hitType: 'pageview',
+          page: 'Search by map page'
+        });
+        $scope.__searcRestaurantsByMap = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search restaurants (Map)',
+              eventAction: 'submit',
+              eventLabel: 'Search by map form'
+            });
+        }
+        $scope.__searchLocation = function() {
+            googleAnalytics({
+              hitType: 'event',
+              eventCategory: 'Search location',
+              eventAction: 'submit',
+              eventLabel: 'Search by map form'
+            });
         }
     }
 ]);

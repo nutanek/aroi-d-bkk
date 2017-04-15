@@ -36,26 +36,6 @@ app.directive('ngEnter', function() {
     };
 });
 
-// app.directive('checkScrollEnd', function($window) {
-//     return {
-//         restrict: 'A',
-//         link: function(scope, element, attrs, ctrl) {
-//             angular.element($window).bind("scroll", function() {
-//                 var windowHeight = "innerHeight" in window
-//                     ? window.innerHeight
-//                     : document.documentElement.offsetHeight;
-//                 var body = document.body,
-//                     html = document.documentElement;
-//                 var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-//                 windowBottom = windowHeight + window.pageYOffset;
-//                 if (windowBottom >= docHeight) {
-//                     alert('bottom reached');
-//                 }
-//             });
-//         }
-//     };
-// });
-
 app.directive('fileModel', [
     '$parse',
     function($parse) {
@@ -277,6 +257,17 @@ app.directive("limitTo", [function() {
 app.directive("navigator", [function() {
         return {
             restrict: 'E',
+            controller: function($scope) {
+                // Google Analytics
+                $scope.__goToHompage = function() {
+                    googleAnalytics({
+                      hitType: 'event',
+                      eventCategory: 'Go to homepage',
+                      eventAction: 'click',
+                      eventLabel: 'Navigator bar'
+                    });
+                }
+            },
             link: function(scope, elem, attrs) {
                 scope.urlLevel1 = attrs.urlLevel1;
                 scope.titleLevel1 = attrs.titleLevel1;

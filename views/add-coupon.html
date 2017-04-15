@@ -26,7 +26,7 @@
                                 <li class="list-group-item text-center">
                                     <p>หากคุณยังไม่เคยเพิ่มข้อมูลร้าน กรุณาเพิ่มข้อมูลร้านก่อน</p>
                                     <p>
-                                        <a href="#/add-restaurant" class="btn btn-lg btn-success" role="button"><i class="glyphicon glyphicon-plus"></i> เพิ่มร้าน</a>
+                                        <a href="#/add-restaurant" class="btn btn-lg btn-success" role="button" ng-click="__addNewRestaurant()"><i class="glyphicon glyphicon-plus"></i> เพิ่มร้าน</a>
                                     </p>
                                 </li>
                             </ul>
@@ -46,7 +46,7 @@
                                                 <p class="area"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ res.area }}</p>
                                             </div>
                                             <div class="col-sm-2 text-right">
-                                                <a ng-href="#/add-coupon/{{ res.id }}" class="btn btn-sm btn-primary" role="button">เพิ่มคูปอง</a>
+                                                <a ng-href="#/add-coupon/{{ res.id }}" class="btn btn-sm btn-primary" role="button" ng-click="__selectRestaurant()">เพิ่มคูปอง</a>
                                             </div>
                                         </div>
                                     </div>
@@ -56,7 +56,7 @@
                                 <li class="list-group-item text-center">
                                     <div class="alert alert-warning" role="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> ไม่พบร้านของคุณ, กรุณาเพิ่มร้านของคุณก่อน</div>
                                     <p>
-                                        <a href="#/add-restaurant" class="btn btn-lg btn-success" role="button"><i class="glyphicon glyphicon-plus"></i> เพิ่มร้าน</a>
+                                        <a href="#/add-restaurant" class="btn btn-lg btn-success" role="button" ng-click="__addNewRestaurant()"><i class="glyphicon glyphicon-plus"></i> เพิ่มร้าน</a>
                                     </p>
                                 </li>
                             </ul>

@@ -3,16 +3,16 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-2">
-                <a href="#/"><img class="logo" src="imgs/logo-sm.png"></a>
+                <a href="#/" ng-click="__goToHompage()"><img class="logo" src="imgs/logo-sm.png"></a>
             </div>
             <div class="col-md-10 text-right buttongroup">
-                <a class="btn btn-sm btn-danger" role="button" ng-click="getCurrentLocation()">
+                <a class="btn btn-sm btn-danger" role="button" ng-click="getCurrentLocation(); __searchNearMe();">
                     <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; ร้านอาหารใกล้ตัว
                 </a>
-                <a href="#/coupons" class="btn btn-sm btn-warning" role="button">
+                <a href="#/coupons" class="btn btn-sm btn-warning" role="button" ng-click="__viewCouponsList()">
                     <i class="fa fa-gift" aria-hidden="true"></i>&nbsp; คูปอง
                 </a>
-                <a href="#/add-restaurant" class="btn btn-sm btn-success" role="button">
+                <a href="#/add-restaurant" class="btn btn-sm btn-success" role="button" ng-click="__addNewRestaurant()">
                     <i class="glyphicon glyphicon-plus"></i> เพิ่มร้าน
                 </a>
             </div>
@@ -46,12 +46,12 @@
                 </div>
             </div>
             <div class="col-md-1">
-                <button type="button" class="btn btn-primary btn-block" ng-click="searchRestaurantNormal()"><i class="glyphicon glyphicon-search"></i></button>
+                <button type="button" class="btn btn-primary btn-block" ng-click="searchRestaurantNormal(); __searcRestaurants();"><i class="glyphicon glyphicon-search"></i></button>
             </div>
             <div class="col-md-2">
                 <div class="btn-group btn-group-justified">
-                    <button type="button" class="btn btn-default" style="width: 65%;" data-toggle="modal" data-target="#searchAdvance" ng-click="setSlider()">ค้นละเอียด</button>
-                    <button type="button" class="btn btn-default" style="width: 35%;" title="ค้นหาจากแผนที่" ng-click="goToMaps()"><i class="fa fa-map-o" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-default" style="width: 65%;" data-toggle="modal" data-target="#searchAdvance" ng-click="setSlider(); __searcRestaurantsAdvance1();">ค้นละเอียด</button>
+                    <button type="button" class="btn btn-default" style="width: 35%;" title="ค้นหาจากแผนที่" ng-click="goToMaps(); __searcRestaurantsByMap();"><i class="fa fa-map-o" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
     <div class="col-xs-12 ressearchbar--scroll hidden-sm hidden-xs" ng-style="{ visibility: showSearchBar }" scroll-show-search>
         <div class="container">
             <div class="col-md-2 text-center">
-                <a href="#/"><img class="logo" src="imgs/logo-sm.png"></a>
+                <a href="#/" ng-click="__goToHompage()"><img class="logo" src="imgs/logo-sm.png"></a>
             </div>
             <div class="col-md-3">
                 <input type="text" class="form-control" ng-model="keyword" placeholder="ชื่อร้าน, ชื่ออาหาร">
@@ -86,12 +86,12 @@
                 </div>
             </div>
             <div class="col-md-1">
-                <button type="button" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-search"></i></button>
+                <button type="button" class="btn btn-primary btn-block" ng-click="searchRestaurantNormal(); __searcRestaurants();"><i class="glyphicon glyphicon-search"></i></button>
             </div>
             <div class="col-md-2">
                 <div class="btn-group btn-group-justified">
-                    <button type="button" class="btn btn-default" style="width: 65%;" data-toggle="modal" data-target="#searchAdvance" ng-click="setSlider()">ค้นละเอียด</button>
-                    <button type="button" class="btn btn-default" style="width: 35%;" title="ค้นหาจากแผนที่" ng-click="goToMaps()"><i class="fa fa-map-o" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-default" style="width: 65%;" data-toggle="modal" data-target="#searchAdvance" ng-click="setSlider(); __searcRestaurantsAdvance1();">ค้นละเอียด</button>
+                    <button type="button" class="btn btn-default" style="width: 35%;" title="ค้นหาจากแผนที่" ng-click="goToMaps(); __searcRestaurantsByMap();"><i class="fa fa-map-o" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
                     <advance-search></advance-search>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="searchRestaurantAdvance()"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="searchRestaurantAdvance(); __searcRestaurantsAdvance2();"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button>
                 </div>
             </div>
 

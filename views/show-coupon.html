@@ -20,13 +20,13 @@
                             </div>
                         </div>
                         <div class="col-md-7 col-sm-12">
-                            <h1 class=""><span class="font-2">{{ coupon.name }}</span> <a ng-href="#/restaurant/{{ coupon.id }}" target="_blank" class="btn btn-xs btn-warning" role="button">ดูข้อมูลร้าน</a></h1>
+                            <h1><span class="font-2">{{ coupon.name }}</span> <a ng-href="#/restaurant/{{ coupon.id }}" target="_blank" class="btn btn-xs btn-warning" role="button" ng-click="__viewRestaurant()">ดูข้อมูลร้าน</a></h1>
                             <p class="type">{{ coupon.type }}</p>
                             <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ coupon.address }}, {{ coupon.area }}</p>
                             <p><i class="fa fa-phone" aria-hidden="true"></i> {{ coupon.tel }}</p>
                         </div>
                         <div class="col-md-2 col-sm-12 text-right">
-                            <button type="button" class="btn btn-md btn-danger" data-toggle="modal" data-target="#getCoupon" ng-click="getCoupon(coupon.name, coupon.couponCode)"><i class="fa fa-gift" aria-hidden="true"></i> รับรหัสคูปอง</button>
+                            <button type="button" class="btn btn-md btn-danger" data-toggle="modal" data-target="#getCoupon" ng-click="getCoupon(coupon.name, coupon.couponCode); __getCoupon();"><i class="fa fa-gift" aria-hidden="true"></i> รับรหัสคูปอง</button>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <p><img src="imgs/coupon-not-found.png"></p>
                     <h1 class="resnotfound__row font-2">ขออภัย, ร้านนี้ไม่มีคูปอง</h1>
                     <p class="resnotfound__row">
-                        <a href="#/add-coupon/{{ idRes }}" type="button" class="btn btn-warning">
+                        <a href="#/add-coupon/{{ idRes }}" type="button" class="btn btn-warning" ng-click="__addNewCoupon()">
                             <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มคูปองร้านของคุณ
                         </a>
                     </p>
