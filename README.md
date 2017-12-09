@@ -21,6 +21,8 @@ This is my UX project using AngularJS
 1. Copy project to your server
 2. Import **aroidbkk.sql** to your DB
 
-## Author
+## Authors
 
 * **NutAnek** -  [https://github.com/nutanek](https://github.com/nutanek)
+* **NeroAddict** -  [https://github.com/neroaddict](https://github.com/neroaddict)
+* **Thanakorn**
